@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rounak Pathak | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <img src="ronak.jpg" alt="Rounak Pathak" class="profile-img" />
+      <h1>Rounak Pathak</h1>
+      <p id="typing-text">Computer Science Student | Aspiring Software Engineer</p>
+      <button id="theme-toggle">Toggle Theme</button>
+      <a href="Rounak_Resume.docx" download class="resume-btn">Download Resume</a>
+    </div>
+  </header>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <section id="about" class="fade-in">
+    <h2>About Me</h2>
+    <p>I’m a third-year Computer Science student passionate about software engineering, system design, and no-code platforms. I enjoy building scalable solutions and exploring emerging technologies. Outside academics, I participate in coding competitions and tech events, and I love sketching and solving logic puzzles.</p>
+  </section>
+
+  <section id="skills" class="fade-in">
+    <h2>Skills</h2>
+    <div class="skill-bar">
+      <p>Python</p>
+      <div class="bar"><div class="fill" style="width: 90%"></div></div>
+    </div>
+    <div class="skill-bar">
+      <p>JavaScript</p>
+      <div class="bar"><div class="fill" style="width: 85%"></div></div>
+    </div>
+    <div class="skill-bar">
+      <p>HTML & CSS</p>
+      <div class="bar"><div class="fill" style="width: 95%"></div></div>
+    </div>
+    <div class="skill-bar">
+      <p>MySQL</p>
+      <div class="bar"><div class="fill" style="width: 80%"></div></div>
+    </div>
+    <div class="skill-bar">
+      <p>C++ & Java (Basic)</p>
+      <div class="bar"><div class="fill" style="width: 60%"></div></div>
+    </div>
+  </section>
+
+  <section id="projects" class="fade-in">
+    <h2>Projects</h2>
+    <div class="project-card">
+      <h3>🎬 Movie Recommendation System</h3>
+      <p>Built using Python, MySQL, HTML, and CSS. Recommends movies based on user preferences and historical data.</p>
+    </div>
+    <div class="project-card">
+      <h3>🏫 School Management System</h3>
+      <p>Manages student records, attendance, grades, and staff details. Designed for usability and secure data handling.</p>
+    </div>
+    <div class="project-card">
+      <h3>📚 Library Management System</h3>
+      <p>Tracks book inventory, issue/return logs, and user registrations. Built for scalability and ease of use.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="fade-in">
+    <h2>Contact</h2>
+    <ul>
+      <li><strong>Phone:</strong> +91 8789355439</li>
+      <li><strong>Email:</strong> <a href="mailto:rounakpathak9080@gmail.com">rounakpathak9080@gmail.com</a></li>
+      <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/rounak-pathak-765a25274" target="_blank">linkedin.com/in/rounak-pathak</a></li>
+      <li><strong>GitHub:</strong> <a href="https://github.com/rounak-98" target="_blank">github.com/rounak-98</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 Rounak Pathak. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+<script>
+    const phrases = [
+      "Computer Science Student",
+      "Aspiring Software Engineer",
+      "Full-Stack Developer",
+      "Tech Explorer",
+      "Problem Solver"
+    ];
+  
+    const typingElement = document.getElementById("typing-text");
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+  
+    function typeLoop() {
+      const currentPhrase = phrases[phraseIndex];
+      const displayedText = currentPhrase.substring(0, charIndex);
+      typingElement.textContent = displayedText;
+  
+      if (!isDeleting && charIndex < currentPhrase.length) {
+        charIndex++;
+        setTimeout(typeLoop, 100);
+      } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        setTimeout(typeLoop, 50);
+      } else {
+        isDeleting = !isDeleting;
+        if (!isDeleting) {
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+        setTimeout(typeLoop, 1000);
+      }
+    }
+  
+    window.onload = typeLoop;
+  </script>
+  
+  
+  
+</body>
+</html>
