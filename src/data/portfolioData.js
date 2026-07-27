@@ -38,6 +38,7 @@ export const EXPERIENCE = [
     company: "Infosys Springboard Internship 7.0 (Virtual)",
     period: "Ongoing",
     status: "Virtual Internship",
+    demo: "https://food-redistribution-ai.vercel.app/",
     details: "Developing an AI-Based Food Redistribution System for Waste Reduction and Surplus Inventory Management. Building demand forecasting, inventory management, and intelligent donor-recipient matching modules using Python, FastAPI, React, Pandas, NumPy, Scikit-learn, SQL, and Streamlit."
   }
 ];

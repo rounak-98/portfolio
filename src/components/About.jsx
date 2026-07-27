@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PERSONAL_INFO, EDUCATION, EXPERIENCE } from '../data/portfolioData';
-import { User, GraduationCap, Heart, Terminal, Sparkles, Compass, Lightbulb, Code2, Briefcase } from 'lucide-react';
+import { User, GraduationCap, Heart, Terminal, Sparkles, Compass, Lightbulb, Code2, Briefcase, ExternalLink } from 'lucide-react';
 
 export const About = () => {
   const [activeTab, setActiveTab] = useState('background');
@@ -117,7 +117,20 @@ export const About = () => {
                           {exp.period}
                         </span>
                       </div>
-                      <div className="text-sm font-medium text-indigo-400">{exp.company}</div>
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <div className="text-sm font-medium text-indigo-400">{exp.company}</div>
+                        {exp.demo && (
+                          <a
+                            href={exp.demo}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold text-xs shadow-sm hover:scale-105 transition"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            <span>Visit Live App</span>
+                          </a>
+                        )}
+                      </div>
                       <p className="text-sm text-slate-300 pt-1 leading-relaxed">{exp.details}</p>
                     </div>
                   ))}

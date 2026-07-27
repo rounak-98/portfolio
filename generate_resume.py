@@ -167,7 +167,7 @@ def create_resume(output_filename):
     ]))
     story.append(t_exp)
 
-    story.append(Paragraph("• Architecting and developing an <b>AI-Based Food Redistribution System</b> for urban waste reduction and surplus inventory management.", style_bullet))
+    story.append(Paragraph("• Architecting and developing an <b>AI-Based Food Redistribution System</b> (<font color='#0284c7'>food-redistribution-ai.vercel.app</font>) for urban waste reduction and surplus inventory management.", style_bullet))
     story.append(Paragraph("• Engineering demand forecasting models, real-time inventory tracking, and intelligent donor-recipient matching algorithms.", style_bullet))
     story.append(Paragraph("• Built full-stack workflows using <b>React.js, FastAPI (Python), MySQL, Tailwind CSS, Pandas, NumPy, Scikit-learn, and Streamlit</b>.", style_bullet))
     story.append(Spacer(1, 5))
