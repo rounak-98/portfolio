@@ -109,6 +109,18 @@ export const Projects = () => {
                 </button>
 
                 <div className="flex items-center gap-2">
+                  {project.demo && project.demo !== '#' && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold text-xs shadow-md shadow-emerald-500/20 hover:scale-105 transition"
+                      title="Visit Live Deployed App"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span>Live Site</span>
+                    </a>
+                  )}
                   <a
                     href={project.github}
                     target="_blank"
@@ -181,13 +193,26 @@ export const Projects = () => {
             </div>
 
             {/* Modal Actions */}
-            <div className="pt-6 border-t border-slate-800 flex items-center justify-end gap-3">
+            <div className="pt-6 border-t border-slate-800 flex flex-wrap items-center justify-end gap-3">
               <button
                 onClick={() => setActiveModalProject(null)}
                 className="px-5 py-2.5 rounded-xl glass-card text-slate-300 text-sm font-medium border border-slate-800 hover:bg-slate-800/50"
               >
                 Close
               </button>
+
+              {activeModalProject.demo && activeModalProject.demo !== '#' && (
+                <a
+                  href={activeModalProject.demo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold text-sm shadow-md hover:scale-105 transition"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Visit Live App</span>
+                </a>
+              )}
+
               <a
                 href={activeModalProject.github}
                 target="_blank"
