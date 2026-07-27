@@ -1,3 +1,11 @@
+const BASE_URL = import.meta.env.BASE_URL || './';
+export const getAssetPath = (path) => {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return BASE_URL.endsWith('/') ? `${BASE_URL}${cleanPath}` : `${BASE_URL}/${cleanPath}`;
+};
+
 export const PERSONAL_INFO = {
   name: "Rounak Pathak",
   title: "Data Analyst | Machine Learning Engineer | AI Developer",
@@ -13,8 +21,8 @@ export const PERSONAL_INFO = {
   phone: "+91 8789355439",
   github: "https://github.com/rounak-98",
   linkedin: "https://www.linkedin.com/in/rounak-pathak-765a25274",
-  resumePath: "/Rounak_Pathak_Resume.pdf",
-  avatar: "/rounak.jpeg",
+  resumePath: getAssetPath("Rounak_Pathak_Resume.pdf"),
+  avatar: getAssetPath("rounak.jpeg"),
   languages: ["English (Professional)", "Hindi (Fluent)", "Marathi (Fluent)"],
   stats: {
     certificates: 19,
@@ -115,24 +123,6 @@ export const SKILLS_CATEGORIES = [
 
 export const PROJECTS = [
   {
-    id: "food-redistribution",
-    title: "Food Redistribution Platform",
-    category: "Full Stack & Web",
-    featured: true,
-    github: "https://github.com/rounak-98",
-    demo: "#",
-    summary: "A smart full-stack web platform built with React frontend and FastAPI backend designed to minimize food waste by connecting surplus donors with verified NGOs.",
-    description: "Built using React.js, FastAPI (Python), and MySQL. Features real-time donor listings with geo-tagging, automated claim notifications, expiry timers, and NGO pickup dispatching. High-performance asynchronous REST endpoints ensure fast responses.",
-    tags: ["React", "FastAPI", "Python", "REST API", "MySQL", "Tailwind CSS"],
-    highlights: [
-      "FastAPI asynchronous backend for instant claim logging",
-      "Interactive React donor & NGO claim dashboard",
-      "Real-time food waste analytics tracking total meals saved"
-    ],
-    gradient: "from-emerald-500/20 to-teal-500/20",
-    border: "border-emerald-500/30"
-  },
-  {
     id: "eda-analysis",
     title: "AI-Powered EDA & Data Analytics Suite",
     category: "AI & Data Science",
@@ -172,7 +162,7 @@ export const PROJECTS = [
     id: "movie-recommendation",
     title: "Movie Recommendation Engine",
     category: "AI & Data Science",
-    featured: false,
+    featured: true,
     github: "https://github.com/rounak-98",
     demo: "#",
     summary: "Intelligent recommendation engine using TF-IDF vectorization and Cosine Similarity to recommend movies based on user preferences.",
@@ -230,7 +220,7 @@ export const CERTIFICATES = [
     title: "Introduction to Machine Learning",
     issuer: "NPTEL / IIT Kharagpur",
     category: "NPTEL & Academics",
-    file: "/CERTIFICATES/Introduction to Machine Learning NPTEL.pdf",
+    file: getAssetPath("CERTIFICATES/Introduction to Machine Learning NPTEL.pdf"),
     tags: ["Machine Learning", "Supervised Learning", "Classification", "Algorithms"],
     date: "2024",
     highlight: "Elite / Academic Certification"
@@ -240,7 +230,7 @@ export const CERTIFICATES = [
     title: "Data Base Management System",
     issuer: "NPTEL / IIT",
     category: "NPTEL & Academics",
-    file: "/CERTIFICATES/Data Base Management System NPTEL.pdf",
+    file: getAssetPath("CERTIFICATES/Data Base Management System NPTEL.pdf"),
     tags: ["DBMS", "SQL", "Relational Algebra", "Database Architecture"],
     date: "2024",
     highlight: "Core Computer Science Certification"
@@ -250,7 +240,7 @@ export const CERTIFICATES = [
     title: "OpenAI GPT-3 for Developers",
     issuer: "OpenAI Developer Hub",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/OpenAI Generative Pre-trained Transformer 3 (GPT-3) for developers.pdf",
+    file: getAssetPath("CERTIFICATES/OpenAI Generative Pre-trained Transformer 3 (GPT-3) for developers.pdf"),
     tags: ["GPT-3", "OpenAI API", "Prompt Tuning", "LLM Apps"],
     date: "2024",
     highlight: "Advanced LLM Development"
@@ -260,7 +250,7 @@ export const CERTIFICATES = [
     title: "Introduction to OpenAI GPT Models",
     issuer: "AI Academy",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Introduction to OpenAI GPT Models.pdf",
+    file: getAssetPath("CERTIFICATES/Introduction to OpenAI GPT Models.pdf"),
     tags: ["GPT Models", "Transformers", "Generative AI"],
     date: "2024",
     highlight: "Generative AI Foundations"
@@ -270,7 +260,7 @@ export const CERTIFICATES = [
     title: "Principles of Generative AI Certification",
     issuer: "Generative AI Institute",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Principles of Generative AI Certification.pdf",
+    file: getAssetPath("CERTIFICATES/Principles of Generative AI Certification.pdf"),
     tags: ["GenAI", "Architecture", "Ethics", "Diffusion Models"],
     date: "2024",
     highlight: "Certified Principles"
@@ -280,7 +270,7 @@ export const CERTIFICATES = [
     title: "Prompt Engineering",
     issuer: "Prompt Engineering Org",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Prompt Engineering.pdf",
+    file: getAssetPath("CERTIFICATES/Prompt Engineering.pdf"),
     tags: ["Prompt Design", "Zero-Shot/Few-Shot", "System Rules"],
     date: "2024",
     highlight: "Prompt Design Mastery"
@@ -290,7 +280,7 @@ export const CERTIFICATES = [
     title: "Generative AI Unleashing",
     issuer: "Tech Academy",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Generative AI Unleashing.pdf",
+    file: getAssetPath("CERTIFICATES/Generative AI Unleashing.pdf"),
     tags: ["Generative Models", "AI Innovation", "Workflows"],
     date: "2024",
     highlight: "AI Capabilities Specialist"
@@ -300,7 +290,7 @@ export const CERTIFICATES = [
     title: "Generative Models for Developers",
     issuer: "Developer Institute",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Generative models for developers.pdf",
+    file: getAssetPath("CERTIFICATES/Generative models for developers.pdf"),
     tags: ["Generative Models", "PyTorch", "APIs"],
     date: "2024",
     highlight: "Developer Applications"
@@ -310,7 +300,7 @@ export const CERTIFICATES = [
     title: "Deep Learning for Developers",
     issuer: "Deep Learning Labs",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Deep Learning for Developers.pdf",
+    file: getAssetPath("CERTIFICATES/Deep Learning for Developers.pdf"),
     tags: ["Deep Learning", "CNNs", "RNNs", "Model Training"],
     date: "2024",
     highlight: "Deep Neural Networks"
@@ -320,7 +310,7 @@ export const CERTIFICATES = [
     title: "Introduction to Deep Learning",
     issuer: "AI Research Academy",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Introduction to Deep Learning.pdf",
+    file: getAssetPath("CERTIFICATES/Introduction to Deep Learning.pdf"),
     tags: ["Deep Learning", "Backpropagation", "Optimizers"],
     date: "2024",
     highlight: "Foundational Neural Networks"
@@ -330,7 +320,7 @@ export const CERTIFICATES = [
     title: "Computer Vision 101",
     issuer: "Vision Tech Institute",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Computer Vision 101.pdf",
+    file: getAssetPath("CERTIFICATES/Computer Vision 101.pdf"),
     tags: ["Computer Vision", "OpenCV", "Image Processing"],
     date: "2024",
     highlight: "Visual Intelligence"
@@ -340,7 +330,7 @@ export const CERTIFICATES = [
     title: "Introduction to Natural Language Processing",
     issuer: "NLP Research Hub",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Introduction to Natural Language Processing.pdf",
+    file: getAssetPath("CERTIFICATES/Introduction to Natural Language Processing.pdf"),
     tags: ["NLP", "Text Mining", "Sentiment Analysis", "Transformers"],
     date: "2024",
     highlight: "Text & Language Modeling"
@@ -350,7 +340,7 @@ export const CERTIFICATES = [
     title: "Artificial Intelligence Primer Certification",
     issuer: "AI Global Alliance",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Artificial Intelligence Primer Certification.pdf",
+    file: getAssetPath("CERTIFICATES/Artificial Intelligence Primer Certification.pdf"),
     tags: ["AI Fundamentals", "Knowledge Representation"],
     date: "2024",
     highlight: "Certified AI Primer"
@@ -360,7 +350,7 @@ export const CERTIFICATES = [
     title: "Artificial Intelligence",
     issuer: "Tech Certification Body",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Artificial Intelligence.pdf",
+    file: getAssetPath("CERTIFICATES/Artificial Intelligence.pdf"),
     tags: ["Artificial Intelligence", "Search & Logic"],
     date: "2024",
     highlight: "Comprehensive AI Concepts"
@@ -370,7 +360,7 @@ export const CERTIFICATES = [
     title: "Introduction to Artificial Intelligence",
     issuer: "Global Tech Academy",
     category: "AI & GenAI",
-    file: "/CERTIFICATES/Introduction to Artificial Intelligence.pdf",
+    file: getAssetPath("CERTIFICATES/Introduction to Artificial Intelligence.pdf"),
     tags: ["AI Core", "Heuristics", "Expert Systems"],
     date: "2024",
     highlight: "AI Core Foundations"
@@ -380,7 +370,7 @@ export const CERTIFICATES = [
     title: "Introduction to Data Science",
     issuer: "Data Science Institute",
     category: "Data Science & ML",
-    file: "/CERTIFICATES/Introduction to Data Science.pdf",
+    file: getAssetPath("CERTIFICATES/Introduction to Data Science.pdf"),
     tags: ["Data Science", "Python", "Data Wrangling", "Visualization"],
     date: "2024",
     highlight: "Data Analytics Specialist"
@@ -390,7 +380,7 @@ export const CERTIFICATES = [
     title: "Agile Scrum in Practice",
     issuer: "Agile Alliance",
     category: "Software Engineering",
-    file: "/CERTIFICATES/Agile Scrum in Practice.pdf",
+    file: getAssetPath("CERTIFICATES/Agile Scrum in Practice.pdf"),
     tags: ["Agile", "Scrum", "Sprint Planning", "Software Lifecycle"],
     date: "2024",
     highlight: "Agile Methodology Professional"
@@ -400,7 +390,7 @@ export const CERTIFICATES = [
     title: "Introduction to Robotic Process Automation",
     issuer: "RPA Automation Hub",
     category: "Software Engineering",
-    file: "/CERTIFICATES/Introduction to Robotic Process Automation.pdf",
+    file: getAssetPath("CERTIFICATES/Introduction to Robotic Process Automation.pdf"),
     tags: ["RPA", "Process Automation", "Workflows"],
     date: "2024",
     highlight: "Automation Engineering"
@@ -410,7 +400,7 @@ export const CERTIFICATES = [
     title: "Software Development Certification",
     issuer: "Naresh i Technologies",
     category: "Software Engineering",
-    file: "/CERTIFICATES/Naresh it certificate.pdf",
+    file: getAssetPath("CERTIFICATES/Naresh it certificate.pdf"),
     tags: ["Full Stack Development", "Programming", "Databases"],
     date: "2024",
     highlight: "Full-Stack Industry Training"
