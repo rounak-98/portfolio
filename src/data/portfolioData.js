@@ -124,6 +124,24 @@ export const SKILLS_CATEGORIES = [
 
 export const PROJECTS = [
   {
+    id: "food-redistribution",
+    title: "AI-Powered Food Redistribution Platform",
+    category: "Full Stack & Web",
+    featured: true,
+    github: "https://github.com/rounak-98",
+    demo: "https://food-redistribution-ai.vercel.app/",
+    summary: "A smart full-stack AI platform built with React frontend and FastAPI backend designed to minimize food waste by seamlessly connecting surplus donors with local NGOs.",
+    description: "Built using React.js, FastAPI (Python), MySQL, and Tailwind CSS. Features real-time donor listings with geo-tagging, automated claim notifications, demand forecasting algorithms, and NGO pickup dispatching. Deployed live on Vercel.",
+    tags: ["React", "FastAPI", "Python", "REST API", "MySQL", "Tailwind CSS", "Vercel"],
+    highlights: [
+      "FastAPI asynchronous backend for instant claim logging & surplus matching",
+      "Interactive React donor & NGO claim dashboard with real-time alerts",
+      "Real-time food waste analytics tracking total meals saved & carbon footprint reduced"
+    ],
+    gradient: "from-emerald-500/20 to-teal-500/20",
+    border: "border-emerald-500/30"
+  },
+  {
     id: "eda-analysis",
     title: "AI-Powered EDA & Data Analytics Suite",
     category: "AI & Data Science",

@@ -178,44 +178,33 @@ def create_resume(output_filename):
 
     # Project 1
     p1_head = [
-        Paragraph("<b>AI-Powered EDA & Data Analytics Suite</b> &nbsp;|&nbsp; <font color='#475569'>Python, Streamlit, Pandas, Scikit-learn, Power BI</font>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>GitHub Repo</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("<b>AI-Powered Food Redistribution Platform</b> &nbsp;|&nbsp; <font color='#475569'>React.js, FastAPI, Python, MySQL, Tailwind CSS</font>", style_body_bold),
+        Paragraph("<font color='#0284c7'><b>Live Site</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
     ]
     t_p1 = Table([p1_head], colWidths=[450, 100])
     t_p1.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
     story.append(t_p1)
-    story.append(Paragraph("• Developed an automated data analytics platform performing correlation profiling, outlier detection, and AI-driven summary insights.", style_bullet))
-    story.append(Paragraph("• Generated interactive Seaborn/Plotly visual charts and exported structured dashboards to Streamlit & Power BI.", style_bullet))
+    story.append(Paragraph("• Built a full-stack AI platform connecting surplus food donors with local NGOs; features async FastAPI backend, real-time claim alerts, and food waste reduction analytics. (<font color='#0284c7'>food-redistribution-ai.vercel.app</font>)", style_bullet))
 
     # Project 2
     p2_head = [
-        Paragraph("<b>BizzApp - Smart Business Management Application</b> &nbsp;|&nbsp; <font color='#475569'>Django, Python, MySQL, JavaScript</font>", style_body_bold),
+        Paragraph("<b>AI-Powered EDA & Data Analytics Suite</b> &nbsp;|&nbsp; <font color='#475569'>Python, Streamlit, Pandas, Scikit-learn, Power BI</font>", style_body_bold),
         Paragraph("<font color='#0284c7'><b>GitHub Repo</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
     ]
     t_p2 = Table([p2_head], colWidths=[450, 100])
     t_p2.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
     story.append(t_p2)
-    story.append(Paragraph("• Engineered an enterprise web application for inventory control, customer quotation processing, GST invoicing, and revenue charts.", style_bullet))
+    story.append(Paragraph("• Developed an automated data analytics platform performing correlation profiling, outlier detection, and AI-driven summary insights.", style_bullet))
 
     # Project 3
     p3_head = [
-        Paragraph("<b>Movie Recommendation Engine</b> &nbsp;|&nbsp; <font color='#475569'>Python, Flask, Scikit-learn, TF-IDF, Cosine Similarity</font>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>GitHub Repo</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("<b>BizzApp - Smart Business Management Application</b> &nbsp;|&nbsp; <font color='#475569'>Django, Python, MySQL, JavaScript</font>", style_body_bold),
+        Paragraph("<font color='#0284c7'><b>Live Site</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
     ]
     t_p3 = Table([p3_head], colWidths=[450, 100])
     t_p3.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
     story.append(t_p3)
-    story.append(Paragraph("• Designed content-based filtering model utilizing TF-IDF text vectorization and cosine similarity to deliver tailored movie recommendations.", style_bullet))
-
-    # Project 4
-    p4_head = [
-        Paragraph("<b>School Management System</b> &nbsp;|&nbsp; <font color='#475569'>Django, Python, MySQL, JavaScript</font>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>GitHub Repo</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
-    ]
-    t_p4 = Table([p4_head], colWidths=[450, 100])
-    t_p4.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
-    story.append(t_p4)
-    story.append(Paragraph("• Full-stack administrative portal managing student records, attendance tracking, grade calculation, and report card generation.", style_bullet))
+    story.append(Paragraph("• Engineered an enterprise web application for inventory control, customer quotation processing, GST invoicing, and revenue analytics. (<font color='#0284c7'>bizzapp.onrender.com</font>)", style_bullet))
     story.append(Spacer(1, 5))
 
     # --- EDUCATION ---
