@@ -27,8 +27,8 @@
 }
 
 @keyframes pulseGlow {
-  0%, 100% { opacity: 0.4; filter: blur(40px); }
-  50% { opacity: 0.8; filter: blur(55px); }
+  0%, 100% { opacity: 0.3; filter: blur(40px); }
+  50% { opacity: 0.7; filter: blur(55px); }
 }
 
 @keyframes gradientShift {
@@ -53,6 +53,13 @@
   animation: gradientShift 6s ease infinite;
 }
 
+.light .gradient-text {
+  background: linear-gradient(135deg, #0284c7 0%, #4338ca 50%, #6d28d9 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .gradient-border {
   position: relative;
   border-radius: 1rem;
@@ -60,17 +67,12 @@
   padding: 1px;
 }
 
+/* Glassmorphism Dark Mode */
 .glass-card {
   background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.light .glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .glass-nav {
@@ -80,9 +82,74 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Professional Minimalist Light Mode Theme */
+.light {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+.light .glass-card {
+  background: #ffffff !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.03) !important;
+}
+
 .light .glass-nav {
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03) !important;
+}
+
+/* Light Mode Text Overrides */
+.light .text-white {
+  color: #0f172a !important;
+}
+
+.light .text-slate-100 {
+  color: #0f172a !important;
+}
+
+.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Light Mode Background & Border Overrides */
+.light .bg-slate-950 {
+  background-color: #f8fafc !important;
+}
+
+.light .bg-slate-900 {
+  background-color: #f1f5f9 !important;
+}
+
+.light .bg-slate-900\/90,
+.light .bg-slate-900\/80,
+.light .bg-slate-900\/60 {
+  background-color: #f1f5f9 !important;
+}
+
+.light .border-slate-800,
+.light .border-slate-800\/80,
+.light .border-slate-800\/90,
+.light .border-slate-800\/60 {
+  border-color: #e2e8f0 !important;
+}
+
+.light .border-slate-700,
+.light .border-slate-700\/80 {
+  border-color: #cbd5e1 !important;
 }
 
 /* Custom Scrollbar */
@@ -104,9 +171,13 @@
 }
 
 .light ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #f8fafc;
 }
 
 .light ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
 }
