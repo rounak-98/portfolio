@@ -146,24 +146,24 @@ export const Hero = ({ onOpenResume }) => {
               </div>
 
               {/* Floating Highlight Card 1: Certificates */}
-              <div className="absolute -bottom-4 -left-6 glass-card p-3 rounded-2xl border border-slate-700 shadow-xl flex items-center gap-3 animate-float backdrop-blur-xl">
-                <div className="p-2 rounded-xl bg-cyan-500/20 text-cyan-400">
-                  <Award className="w-6 h-6" />
+              <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-6 glass-card p-2.5 sm:p-3 rounded-2xl border border-slate-700 shadow-xl flex items-center gap-2.5 sm:gap-3 animate-float backdrop-blur-xl scale-90 sm:scale-100">
+                <div className="p-1.5 sm:p-2 rounded-xl bg-cyan-500/20 text-cyan-400">
+                  <Award className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <div className="text-lg font-bold text-white leading-tight">19+</div>
-                  <div className="text-xs text-slate-400 font-medium">Certifications</div>
+                  <div className="text-base sm:text-lg font-bold text-white leading-tight">19+</div>
+                  <div className="text-[10px] sm:text-xs text-slate-400 font-medium">Certifications</div>
                 </div>
               </div>
 
               {/* Floating Highlight Card 2: GitHub Projects */}
-              <div className="absolute -top-4 -right-6 glass-card p-3 rounded-2xl border border-slate-700 shadow-xl flex items-center gap-3 animate-float backdrop-blur-xl [animation-delay:2s]">
-                <div className="p-2 rounded-xl bg-purple-500/20 text-purple-400">
-                  <FolderGit2 className="w-6 h-6" />
+              <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 glass-card p-2.5 sm:p-3 rounded-2xl border border-slate-700 shadow-xl flex items-center gap-2.5 sm:gap-3 animate-float backdrop-blur-xl [animation-delay:2s] scale-90 sm:scale-100">
+                <div className="p-1.5 sm:p-2 rounded-xl bg-purple-500/20 text-purple-400">
+                  <FolderGit2 className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <div className="text-lg font-bold text-white leading-tight">6+</div>
-                  <div className="text-xs text-slate-400 font-medium">Featured Projects</div>
+                  <div className="text-base sm:text-lg font-bold text-white leading-tight">6+</div>
+                  <div className="text-[10px] sm:text-xs text-slate-400 font-medium">Featured Projects</div>
                 </div>
               </div>
 

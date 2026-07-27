@@ -33,7 +33,7 @@ export const About = () => {
           
           {/* Left Column: Interactive Nav Tabs */}
           <div className="lg:col-span-4 flex flex-col gap-3">
-            <div className="glass-card p-2 rounded-2xl border border-slate-800 shadow-xl flex flex-col gap-2">
+            <div className="glass-card p-2 rounded-2xl border border-slate-800 shadow-xl flex flex-row lg:flex-col overflow-x-auto no-scrollbar gap-2">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
@@ -41,14 +41,14 @@ export const About = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-3 px-5 py-4 rounded-xl text-left font-semibold text-base transition-all duration-300 ${
+                    className={`flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-4 rounded-xl text-left font-semibold text-xs sm:text-base whitespace-nowrap shrink-0 transition-all duration-300 ${
                       isActive
                         ? 'bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 text-cyan-300 border border-cyan-500/30 shadow-md'
                         : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
                     }`}
                   >
-                    <div className={`p-2 rounded-lg ${isActive ? 'bg-cyan-500/20 text-cyan-400' : 'bg-slate-800 text-slate-400'}`}>
-                      <Icon className="w-5 h-5" />
+                    <div className={`p-1.5 sm:p-2 rounded-lg ${isActive ? 'bg-cyan-500/20 text-cyan-400' : 'bg-slate-800 text-slate-400'}`}>
+                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     <span>{tab.label}</span>
                   </button>

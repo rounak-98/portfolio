@@ -49,12 +49,12 @@ export const Certificates = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
           
           {/* Category Badges */}
-          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+          <div className="flex items-center gap-2 w-full md:w-auto overflow-x-auto no-scrollbar pb-1 md:pb-0">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+                className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all ${
                   selectedCategory === cat
                     ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-md shadow-cyan-500/20'
                     : 'glass-card text-slate-300 hover:text-white border border-slate-800'
