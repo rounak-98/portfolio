@@ -6,15 +6,16 @@
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
-    /* Sylva Living World Natural Cool Palette */
-    --sylva-bg: #383b34;
-    --sylva-bg-alt: #4a4d44;
-    --sylva-paper: #ece7dc;
-    --sylva-card: #f2f3ef;
-    --sylva-ink: #23261f;
-    --sylva-ink-soft: rgba(35, 38, 31, 0.7);
-    --sylva-emerald: #10b981;
+    /* Cool Blue Palette Tokens */
+    --sylva-bg: #0f172a;
+    --sylva-bg-alt: #1e293b;
+    --sylva-paper: #f8fafc;
+    --sylva-card: #1e293b;
+    --sylva-ink: #f8fafc;
+    --sylva-ink-soft: rgba(248, 250, 252, 0.7);
     --sylva-cyan: #38bdf8;
+    --sylva-blue: #60a5fa;
+    --sylva-cobalt: #2563eb;
     
     /* Easing Physics */
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -65,72 +66,72 @@
   animation: liquidRipple 6s ease-in-out infinite;
 }
 
-/* Sylva Natural Gradient Text */
+/* Cool Blue Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, #34d399 0%, #38bdf8 50%, #60a5fa 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 50%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Sylva Botanical Natural Cards */
+/* Cool Blue Glass Cards */
 .glass-card {
-  background: rgba(41, 44, 37, 0.82);
+  background: rgba(30, 41, 59, 0.82);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(238, 241, 231, 0.12);
-  color: #eef1e7;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
 }
 
 .glass-nav {
-  background: rgba(41, 44, 37, 0.92);
+  background: rgba(15, 23, 42, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(238, 241, 231, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Light Mode Natural Paper */
+/* Light Mode Luxury Palette */
 .light {
-  background-color: #ece7dc !important;
-  color: #23261f !important;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
 }
 
 .light .glass-card {
-  background: #f2f3ef !important;
+  background: #ffffff !important;
   backdrop-filter: blur(16px);
-  border: 1px solid #d5d8cd !important;
-  color: #23261f !important;
-  box-shadow: 0 10px 30px -5px rgba(35, 38, 31, 0.08) !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08) !important;
 }
 
 .light .glass-nav {
-  background: rgba(242, 243, 239, 0.95) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid #d5d8cd !important;
-  box-shadow: 0 4px 20px rgba(35, 38, 31, 0.05) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
 }
 
 .light .text-white,
 .light .text-slate-100 {
-  color: #23261f !important;
+  color: #0f172a !important;
 }
 
 .light .text-slate-200,
 .light .text-slate-300 {
-  color: #3b3f35 !important;
+  color: #1e293b !important;
 }
 
 .light .text-slate-400,
 .light .text-slate-500 {
-  color: #5c6155 !important;
+  color: #64748b !important;
 }
 
 .light .bg-slate-950,
 .light .bg-slate-900 {
-  background-color: #f2f3ef !important;
+  background-color: #f1f5f9 !important;
 }
 
 .light .border-slate-800 {
-  border-color: #d5d8cd !important;
+  border-color: #e2e8f0 !important;
 }
 
 /* 3D Transform Utilities */
@@ -172,14 +173,14 @@ button:active, a:active {
 }
 
 ::-webkit-scrollbar-track {
-  background: #383b34;
+  background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5c6155;
+  background: #334155;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #34d399;
+  background: #38bdf8;
 }

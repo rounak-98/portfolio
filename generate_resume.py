@@ -17,7 +17,7 @@ def create_resume(output_filename):
 
     styles = getSampleStyleSheet()
     
-    # Custom Palette
+    # Custom Palette - Cool Deep Cobalt & Slate
     PRIMARY_COLOR = colors.HexColor('#0f172a')     # Dark Slate
     ACCENT_COLOR = colors.HexColor('#0284c7')      # Sky Blue / Cyan
     TEXT_COLOR = colors.HexColor('#1e293b')        # Slate 800
@@ -101,7 +101,7 @@ def create_resume(output_filename):
     # --- HEADER ---
     story.append(Paragraph("ROUNAK PATHAK", style_name))
     story.append(Spacer(1, 2))
-    story.append(Paragraph("Aspiring Data Analyst &nbsp;|&nbsp; Machine Learning Engineer &nbsp;|&nbsp; AI Developer", style_title))
+    story.append(Paragraph("Aspiring Data Analyst &nbsp;|&nbsp; Machine Learning Engineer &nbsp;|&nbsp; Full-Stack AI Developer", style_title))
     story.append(Spacer(1, 3))
     
     contact_text = (
@@ -119,9 +119,9 @@ def create_resume(output_filename):
     story.append(Paragraph("PROFESSIONAL SUMMARY", style_heading))
     summary_p = Paragraph(
         "Motivated Computer Engineering student at Bharati Vidyapeeth College of Engineering Pune (<b>CGPA: 8.7</b>) "
-        "specializing in data analytics, machine learning algorithms, and AI development. Currently pursuing "
-        "<b>Infosys Springboard Internship 7.0</b> developing an AI-driven Food Redistribution System while building "
-        "full-stack applications (React, FastAPI, Django) and interactive EDA data science suites.",
+        "specializing in data analytics, machine learning algorithms, and full-stack software development. Currently pursuing "
+        "<b>Infosys Springboard Internship 7.0</b> engineering the Food Bridge AI platform alongside building client real estate "
+        "applications (Arus Homes) and production web platforms (BizzApp, Library Management, EDA Suite).",
         style_body
     )
     story.append(summary_p)
@@ -132,12 +132,12 @@ def create_resume(output_filename):
     story.append(HRFlowable(width="100%", thickness=0.5, color=LINE_COLOR, spaceAfter=3, spaceBefore=0))
     
     skills_data = [
-        [Paragraph("<b>Programming & DB:</b>", style_body_bold), Paragraph("Python, SQL, MySQL, JavaScript, HTML5/CSS3", style_body)],
+        [Paragraph("<b>Programming & DB:</b>", style_body_bold), Paragraph("Python, SQL & MySQL, JavaScript (ES6+), HTML5/CSS3", style_body)],
         [Paragraph("<b>ML & AI Concepts:</b>", style_body_bold), Paragraph("Regression, Classification, Clustering, NLP, Deep Learning, Computer Vision, Prompt Engineering", style_body)],
         [Paragraph("<b>Algorithms & Stats:</b>", style_body_bold), Paragraph("Random Forest, XGBoost, SVM, Decision Trees, KNN, Naive Bayes, TF-IDF, NER", style_body)],
-        [Paragraph("<b>Frameworks & Web:</b>", style_body_bold), Paragraph("FastAPI, Django, React.js, Flask, Streamlit, Gradio, Tailwind CSS", style_body)],
+        [Paragraph("<b>Frameworks & Web:</b>", style_body_bold), Paragraph("FastAPI, React.js, Django, Flask, Streamlit, Gradio, Tailwind CSS, REST APIs", style_body)],
         [Paragraph("<b>Libraries & BI Tools:</b>", style_body_bold), Paragraph("Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch, Matplotlib, Seaborn, Power BI, Tableau", style_body)],
-        [Paragraph("<b>Tools & IDEs:</b>", style_body_bold), Paragraph("Git, GitHub, VS Code, Jupyter Notebook, PyCharm, Spyder", style_body)],
+        [Paragraph("<b>Tools & Deployment:</b>", style_body_bold), Paragraph("Git, GitHub, Vercel, Render, VS Code, Jupyter Notebook, PyCharm", style_body)],
     ]
     t_skills = Table(skills_data, colWidths=[110, 440])
     t_skills.setStyle(TableStyle([
@@ -167,13 +167,13 @@ def create_resume(output_filename):
     ]))
     story.append(t_exp)
 
-    story.append(Paragraph("• Architecting and developing the <b>Food Bridge AI</b> platform (<font color='#0284c7'>food-redistribution-ai.vercel.app</font>) for waste reduction and surplus inventory management.", style_bullet))
-    story.append(Paragraph("• Engineering demand forecasting models, real-time inventory tracking, and intelligent donor-recipient matching algorithms.", style_bullet))
+    story.append(Paragraph("• Architecting and developing the <b>Food Bridge AI</b> platform (<font color='#0284c7'>food-redistribution-ai.vercel.app</font>) for urban food waste reduction and surplus inventory management.", style_bullet))
+    story.append(Paragraph("• <b>Tech Stack:</b> Python, FastAPI, React.js, Tailwind CSS, OpenAI GPT-4, Scikit-learn, SQL & MySQL, Vercel.", style_bullet))
     story.append(Spacer(1, 3))
 
     # Experience 2: Freelance
     exp2_header = [
-        Paragraph("<b>Freelance Software Developer</b> &nbsp;|&nbsp; <i>Arus Homes Developers</i>", style_body_bold),
+        Paragraph("<b>Freelance Full-Stack Developer</b> &nbsp;|&nbsp; <i>Arus Homes Developers</i>", style_body_bold),
         Paragraph("<font color='#0284c7'><b>Client Project</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
     ]
     t_exp2 = Table([exp2_header], colWidths=[420, 130])
@@ -184,42 +184,48 @@ def create_resume(output_filename):
         ('BOTTOMPADDING', (0,0), (-1,-1), 1),
     ]))
     story.append(t_exp2)
-    story.append(Paragraph("• Designed and built the <b>Arus Homes</b> real estate & property platform for property showcases, virtual tours, and client lead management.", style_bullet))
+    story.append(Paragraph("• Designed and built the <b>Arus Homes</b> real estate & property showcase platform for virtual property tours, listing filters, and client inquiry lead capture.", style_bullet))
+    story.append(Paragraph("• <b>Tech Stack:</b> React.js, JavaScript (ES6+), Tailwind CSS, Node.js, REST APIs.", style_bullet))
     story.append(Spacer(1, 5))
 
-    # --- FEATURED PROJECTS ---
-    story.append(Paragraph("FEATURED PROJECTS", style_heading))
+    # --- FEATURED REGULAR PROJECTS ---
+    story.append(Paragraph("FEATURED REGULAR PROJECTS", style_heading))
     story.append(HRFlowable(width="100%", thickness=0.5, color=LINE_COLOR, spaceAfter=3, spaceBefore=0))
 
-    # Project 1
+    # Project 1: BizzApp
     p1_head = [
-        Paragraph("<b>AI-Powered Food Redistribution Platform</b> &nbsp;|&nbsp; <font color='#475569'>React.js, FastAPI, Python, MySQL, Tailwind CSS</font>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>Live Site</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("<b>BizzApp - Smart Business Management Application</b>", style_body_bold),
+        Paragraph("<font color='#0284c7'><b>bizzapp.onrender.com</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
     ]
-    t_p1 = Table([p1_head], colWidths=[450, 100])
+    t_p1 = Table([p1_head], colWidths=[390, 160])
     t_p1.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
     story.append(t_p1)
-    story.append(Paragraph("• Built a full-stack AI platform connecting surplus food donors with local NGOs; features async FastAPI backend, real-time claim alerts, and food waste reduction analytics. (<font color='#0284c7'>food-redistribution-ai.vercel.app</font>)", style_bullet))
+    story.append(Paragraph("• Engineered an enterprise web application for inventory control, customer quotation processing, GST invoicing, and revenue analytics.", style_bullet))
+    story.append(Paragraph("• <b>Tech Stack:</b> Python, Django, MySQL, HTML5/CSS3, JavaScript, Render Cloud.", style_bullet))
+    story.append(Spacer(1, 3))
 
-    # Project 2
+    # Project 2: Library Management
     p2_head = [
-        Paragraph("<b>AI-Powered EDA & Data Analytics Suite</b> &nbsp;|&nbsp; <font color='#475569'>Python, Streamlit, Pandas, Scikit-learn, Power BI</font>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>GitHub Repo</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("<b>Library Management System</b>", style_body_bold),
+        Paragraph("<font color='#0284c7'><b>library-management-6-4y0b...</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
     ]
-    t_p2 = Table([p2_head], colWidths=[450, 100])
+    t_p2 = Table([p2_head], colWidths=[370, 180])
     t_p2.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
     story.append(t_p2)
-    story.append(Paragraph("• Developed an automated data analytics platform performing correlation profiling, outlier detection, and AI-driven summary insights.", style_bullet))
+    story.append(Paragraph("• Built an automated digital library management platform for book cataloging, member issue/return tracking, and overdue fine calculations.", style_bullet))
+    story.append(Paragraph("• <b>Tech Stack:</b> Python, Flask, MySQL, HTML5/CSS3, Tailwind CSS, Render Cloud.", style_bullet))
+    story.append(Spacer(1, 3))
 
-    # Project 3
+    # Project 3: EDA Analytics Suite
     p3_head = [
-        Paragraph("<b>BizzApp - Smart Business Management Application</b> &nbsp;|&nbsp; <font color='#475569'>Django, Python, MySQL, JavaScript</font>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>Live Site</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("<b>AI-Powered EDA & Data Analytics Suite</b>", style_body_bold),
+        Paragraph("<font color='#0284c7'><b>GitHub Repository</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
     ]
-    t_p3 = Table([p3_head], colWidths=[450, 100])
+    t_p3 = Table([p3_head], colWidths=[430, 120])
     t_p3.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
     story.append(t_p3)
-    story.append(Paragraph("• Engineered an enterprise web application for inventory control, customer quotation processing, GST invoicing, and revenue analytics. (<font color='#0284c7'>bizzapp.onrender.com</font>)", style_bullet))
+    story.append(Paragraph("• Developed an interactive data analytics platform performing correlation profiling, automated outlier detection, and AI-driven summary insights.", style_bullet))
+    story.append(Paragraph("• <b>Tech Stack:</b> Python, Streamlit, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn.", style_bullet))
     story.append(Spacer(1, 5))
 
     # --- EDUCATION ---
@@ -235,7 +241,7 @@ def create_resume(output_filename):
     story.append(t_e1)
 
     edu2 = [
-        Paragraph("<b>Saint Francis School</b> &nbsp;|&nbsp; <i>12th Standard (Science, CHSE): 80.4% &nbsp;•&nbsp; 10th Standard: 93.0%</i>", style_body),
+        Paragraph("<b>Saint Francis School</b> &nbsp;|&nbsp; <i>12th Standard (Science): 80.4% &nbsp;•&nbsp; 10th Standard: 93.0%</i>", style_body),
         Paragraph("<b>2021 – 2023</b>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
     ]
     t_e2 = Table([edu2], colWidths=[430, 120])
@@ -262,7 +268,6 @@ def create_resume(output_filename):
 if __name__ == "__main__":
     create_resume("public/Rounak_Pathak_Resume.pdf")
     create_resume("public/Rounak_Pathak_Concise_Resume.pdf")
-    # Also update Downloads copy if accessible
     try:
         create_resume("C:/Users/rouna/Downloads/Rounak Pathak resume.pdf")
     except Exception as e:

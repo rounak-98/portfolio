@@ -25,15 +25,15 @@ export const BackgroundCanvas = () => {
 
     container.appendChild(renderer.domElement);
 
-    // Sylva Living World Botanical Particles
-    const particleCount = 650;
+    // Cool Blue Botanical Spores
+    const particleCount = 700;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const emeraldColor = new THREE.Color(0x34d399); // Living Emerald
-    const cyanColor = new THREE.Color(0x38bdf8);    // Cool Cyan
-    const paperColor = new THREE.Color(0xeef1e7);   // Sylva Alabaster
+    const cyanColor = new THREE.Color(0x38bdf8);   // Electric Cyan
+    const iceBlueColor = new THREE.Color(0x60a5fa); // Ice Blue
+    const cobaltColor = new THREE.Color(0x2563eb);  // Cobalt Blue
 
     for (let i = 0; i < particleCount; i++) {
       const radius = 220 + (Math.random() - 0.5) * 80;
@@ -46,8 +46,8 @@ export const BackgroundCanvas = () => {
 
       const rand = Math.random();
       const vertexColor = rand > 0.5
-        ? emeraldColor.clone().lerp(cyanColor, rand)
-        : emeraldColor.clone().lerp(paperColor, rand);
+        ? cyanColor.clone().lerp(iceBlueColor, rand)
+        : cyanColor.clone().lerp(cobaltColor, rand);
 
       colors[i * 3] = vertexColor.r;
       colors[i * 3 + 1] = vertexColor.g;
@@ -116,11 +116,11 @@ export const BackgroundCanvas = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#383b34]">
-      {/* Sylva Living World Light Pools */}
-      <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-emerald-500/15 rounded-full blur-[140px] animate-pulse-slow pointer-events-none"></div>
-      <div className="absolute top-1/3 -right-40 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[140px] animate-pulse-slow pointer-events-none delay-1000"></div>
-      <div className="absolute -bottom-40 left-1/3 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[140px] animate-pulse-slow pointer-events-none delay-2000"></div>
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#0f172a]">
+      {/* Cool Blue Ambient Light Pools */}
+      <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[140px] animate-pulse-slow pointer-events-none"></div>
+      <div className="absolute top-1/3 -right-40 w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[140px] animate-pulse-slow pointer-events-none delay-1000"></div>
+      <div className="absolute -bottom-40 left-1/3 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[140px] animate-pulse-slow pointer-events-none delay-2000"></div>
       
       <div ref={mountRef} className="w-full h-full block opacity-75" />
     </div>
