@@ -10,7 +10,12 @@ export const Hero = ({ onOpenResume }) => {
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(100);
 
-  const titles = PERSONAL_INFO.titles;
+  const titles = PERSONAL_INFO.taglines || [
+    "Machine Learning Engineer",
+    "AI Developer & Data Analyst",
+    "Full-Stack Web Developer (React + FastAPI & Django)",
+    "B.Tech Computer Engineering (CGPA 8.7)"
+  ];
 
   // Kinetic Typing Effect
   useEffect(() => {
