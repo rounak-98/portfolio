@@ -6,10 +6,15 @@
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
-    /* Anti-Slop Singular Accent Tokens */
-    --accent-cyan: #38bdf8;
-    --accent-cobalt: #0284c7;
-    --accent-emerald: #10b981;
+    /* Sylva Living World Natural Cool Palette */
+    --sylva-bg: #383b34;
+    --sylva-bg-alt: #4a4d44;
+    --sylva-paper: #ece7dc;
+    --sylva-card: #f2f3ef;
+    --sylva-ink: #23261f;
+    --sylva-ink-soft: rgba(35, 38, 31, 0.7);
+    --sylva-emerald: #10b981;
+    --sylva-cyan: #38bdf8;
     
     /* Easing Physics */
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -19,6 +24,7 @@
   html {
     font-family: var(--font-body);
     scroll-behavior: smooth;
+    background-color: var(--sylva-bg);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -37,14 +43,14 @@
 }
 
 @keyframes pulseGlow {
-  0%, 100% { opacity: 0.2; filter: blur(50px); }
-  50% { opacity: 0.5; filter: blur(70px); }
+  0%, 100% { opacity: 0.25; filter: blur(50px); }
+  50% { opacity: 0.6; filter: blur(70px); }
 }
 
-@keyframes rotateDoor {
-  0% { transform: perspective(1200px) rotateY(0deg); }
-  50% { transform: perspective(1200px) rotateY(90deg); }
-  100% { transform: perspective(1200px) rotateY(180deg); }
+@keyframes liquidRipple {
+  0% { transform: scale(1); border-radius: 999px; }
+  50% { transform: scale(1.03) rotate(1deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+  100% { transform: scale(1); border-radius: 999px; }
 }
 
 .animate-float {
@@ -55,90 +61,79 @@
   animation: pulseGlow 8s ease-in-out infinite;
 }
 
-/* Anti-Slop Gradient Text (Singular Cobalt-Cyan Lock) */
+.animate-liquid {
+  animation: liquidRipple 6s ease-in-out infinite;
+}
+
+/* Sylva Natural Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 50%, #2563eb 100%);
+  background: linear-gradient(135deg, #34d399 0%, #38bdf8 50%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.light .gradient-text {
-  background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Dark Mode Glass */
+/* Sylva Botanical Natural Cards */
 .glass-card {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(41, 44, 37, 0.82);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(238, 241, 231, 0.12);
+  color: #eef1e7;
 }
 
 .glass-nav {
-  background: rgba(15, 23, 42, 0.88);
+  background: rgba(41, 44, 37, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(238, 241, 231, 0.12);
 }
 
-/* Light Mode Luxury Palette */
+/* Light Mode Natural Paper */
 .light {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
+  background-color: #ece7dc !important;
+  color: #23261f !important;
 }
 
 .light .glass-card {
-  background: #ffffff !important;
+  background: #f2f3ef !important;
   backdrop-filter: blur(16px);
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 4px 12px -2px rgba(15, 23, 42, 0.03) !important;
+  border: 1px solid #d5d8cd !important;
+  color: #23261f !important;
+  box-shadow: 0 10px 30px -5px rgba(35, 38, 31, 0.08) !important;
 }
 
 .light .glass-nav {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: rgba(242, 243, 239, 0.95) !important;
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid #e2e8f0 !important;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04) !important;
+  border-bottom: 1px solid #d5d8cd !important;
+  box-shadow: 0 4px 20px rgba(35, 38, 31, 0.05) !important;
 }
 
-/* Light Mode Text Overrides */
 .light .text-white,
 .light .text-slate-100 {
-  color: #0f172a !important;
+  color: #23261f !important;
 }
 
-.light .text-slate-200 {
-  color: #1e293b !important;
-}
-
+.light .text-slate-200,
 .light .text-slate-300 {
-  color: #334155 !important;
+  color: #3b3f35 !important;
 }
 
 .light .text-slate-400,
 .light .text-slate-500 {
-  color: #64748b !important;
+  color: #5c6155 !important;
 }
 
-.light .bg-slate-950 {
-  background-color: #f8fafc !important;
+.light .bg-slate-950,
+.light .bg-slate-900 {
+  background-color: #f2f3ef !important;
 }
 
-.light .bg-slate-900,
-.light .bg-slate-900\/90,
-.light .bg-slate-900\/80,
-.light .bg-slate-900\/60 {
-  background-color: #f1f5f9 !important;
+.light .border-slate-800 {
+  border-color: #d5d8cd !important;
 }
 
-.light .border-slate-800,
-.light .border-slate-800\/80 {
-  border-color: #e2e8f0 !important;
-}
-
-/* 3D Rotating Door Card Styles */
+/* 3D Transform Utilities */
 .perspective-1000 {
   perspective: 1000px;
 }
@@ -156,7 +151,7 @@
   transform: rotateY(180deg);
 }
 
-/* Emil Kowalski Tactile Button Feedback */
+/* Emil Kowalski Button Physics */
 button:active, a:active {
   transform: scale(0.97);
   transition: transform 140ms var(--ease-out);
@@ -177,26 +172,14 @@ button:active, a:active {
 }
 
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: #383b34;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #5c6155;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #38bdf8;
-}
-
-.light ::-webkit-scrollbar-track {
-  background: #f8fafc;
-}
-
-.light ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-}
-
-.light ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: #34d399;
 }
