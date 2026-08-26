@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CERTIFICATES } from '../data/portfolioData';
 import { Award, FileText, Search, Download, X, Sparkles, Eye, CheckCircle2, ShieldCheck, ChevronLeft, ChevronRight, RotateCcw, Repeat, Layers, ExternalLink } from 'lucide-react';
 
@@ -8,6 +8,9 @@ export const Certificates = () => {
   const [activeCertificateModal, setActiveCertificateModal] = useState(null);
   const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
   const [flippedCards, setFlippedCards] = useState({});
+
+  const carouselStageRef = useRef(null);
+  const dragRef = useRef({ isDragging: false, startX: 0, initialIndex: 0 });
 
   const categories = [
     'All',
@@ -43,6 +46,59 @@ export const Certificates = () => {
     setActiveCarouselIndex((prev) => (prev - 1 + filteredCertificates.length) % filteredCertificates.length);
   };
 
+  // Motion Scroll Gesture (Mouse Wheel & Trackpad)
+  const handleWheelScroll = (e) => {
+    if (filteredCertificates.length === 0) return;
+    if (Math.abs(e.deltaX) > 10 || Math.abs(e.deltaY) > 10) {
+      if (e.deltaX > 20 || e.deltaY > 20) {
+        handleNext();
+      } else if (e.deltaX < -20 || e.deltaY < -20) {
+        handlePrev();
+      }
+    }
+  };
+
+  // Pointer / Touch Drag Motion Gesture
+  const handlePointerDown = (e) => {
+    if (filteredCertificates.length === 0) return;
+    dragRef.current = {
+      isDragging: true,
+      startX: e.clientX,
+      initialIndex: activeCarouselIndex
+    };
+  };
+
+  const handlePointerMove = (e) => {
+    if (!dragRef.current.isDragging || filteredCertificates.length === 0) return;
+    const deltaX = e.clientX - dragRef.current.startX;
+    const stepThreshold = 80; // pixels per step
+
+    if (Math.abs(deltaX) > stepThreshold) {
+      const steps = Math.round(deltaX / stepThreshold);
+      const total = filteredCertificates.length;
+      let newIndex = (dragRef.current.initialIndex - steps) % total;
+      if (newIndex < 0) newIndex += total;
+      setActiveCarouselIndex(newIndex);
+    }
+  };
+
+  const handlePointerUp = () => {
+    dragRef.current.isDragging = false;
+  };
+
+  // Keyboard Arrow Key Motion
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') {
+        handleNext();
+      } else if (e.key === 'ArrowLeft') {
+        handlePrev();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [filteredCertificates.length]);
+
   const toggleDoorFlip = (id, e) => {
     e.stopPropagation();
     setFlippedCards((prev) => ({
@@ -59,19 +115,19 @@ export const Certificates = () => {
         <div className="flex flex-col items-center text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium mb-3 shadow-md">
             <Layers className="w-4 h-4 text-cyan-400" />
-            <span>ThreeUI 3D Character Carousel & Verified Document Plates</span>
+            <span>ThreeUI 3D Motion Scroll Character Carousel</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            19+ Verified <span className="gradient-text">Certificate Document Plates</span>
+            19+ Verified <span className="gradient-text">Certificate Plates</span>
           </h2>
           <div className="w-20 h-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full mt-3"></div>
           <p className="text-slate-300 max-w-2xl mt-4 text-sm sm:text-base">
-            Spin the 3D Character Carousel to preview live certificate documents, inspect verified seals, and download official PDF records!
+            Swipe, drag, or scroll with your mouse wheel / trackpad to spin through 19+ verified 3D certificate document plates!
           </p>
         </div>
 
         {/* Filter Controls & Search Bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
           
           {/* Category Badges */}
           <div className="flex items-center gap-2 w-full md:w-auto overflow-x-auto no-scrollbar pb-1 md:pb-0">
@@ -104,9 +160,17 @@ export const Certificates = () => {
 
         </div>
 
-        {/* THREEUI 3D CHARACTER CAROUSEL STAGE */}
+        {/* THREEUI 3D MOTION SCROLL CAROUSEL STAGE */}
         {filteredCertificates.length > 0 ? (
-          <div className="relative w-full max-w-5xl mx-auto py-8">
+          <div
+            ref={carouselStageRef}
+            onWheel={handleWheelScroll}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerUp}
+            className="relative w-full max-w-5xl mx-auto py-8 touch-pan-x cursor-grab active:cursor-grabbing select-none"
+          >
             
             {/* Carousel Navigation Arrows */}
             <button
@@ -296,10 +360,10 @@ export const Certificates = () => {
 
             </div>
 
-            {/* Character Carousel Indicator Bar */}
-            <div className="flex items-center justify-center gap-2 mt-4">
+            {/* Motion Gesture Help Hint */}
+            <div className="flex flex-col items-center justify-center gap-1 mt-4">
               <span className="text-xs font-mono text-slate-400">
-                Plate {activeCarouselIndex + 1} of {filteredCertificates.length}
+                Plate {activeCarouselIndex + 1} of {filteredCertificates.length} • Scroll or drag horizontally to spin
               </span>
             </div>
 
