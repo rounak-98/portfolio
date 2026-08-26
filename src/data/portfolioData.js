@@ -244,7 +244,7 @@ export const PROJECTS = [
     id: "school-management",
     title: "School Management System",
     category: "Full Stack & Web",
-    featured: false,
+    featured: true,
     github: "https://github.com/rounak-98",
     demo: "#",
     summary: "Full-stack educational management portal for managing student records, attendance, grades, and teacher rosters.",

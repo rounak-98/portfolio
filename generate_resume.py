@@ -204,16 +204,16 @@ def create_resume(output_filename):
     story.append(Paragraph("• <b>Tech Stack:</b> Python, Django, MySQL, HTML5/CSS3, JavaScript, Render Cloud.", style_bullet))
     story.append(Spacer(1, 3))
 
-    # Project 2: Library Management
+    # Project 2: School Management
     p2_head = [
-        Paragraph("<b>Library Management System</b>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>library-management-6-4y0b...</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("<b>School Management System</b>", style_body_bold),
+        Paragraph("<font color='#0284c7'><b>GitHub Repository</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
     ]
-    t_p2 = Table([p2_head], colWidths=[370, 180])
+    t_p2 = Table([p2_head], colWidths=[420, 130])
     t_p2.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
     story.append(t_p2)
-    story.append(Paragraph("• Built an automated digital library management platform for book cataloging, member issue/return tracking, and overdue fine calculations.", style_bullet))
-    story.append(Paragraph("• <b>Tech Stack:</b> Python, Flask, MySQL, HTML5/CSS3, Tailwind CSS, Render Cloud.", style_bullet))
+    story.append(Paragraph("• Developed an automated school administration platform for student enrollment, course grading, attendance tracking, and fee records.", style_bullet))
+    story.append(Paragraph("• <b>Tech Stack:</b> Python, Django, MySQL, HTML5/CSS3, Bootstrap.", style_bullet))
     story.append(Spacer(1, 3))
 
     # Project 3: EDA Analytics Suite
