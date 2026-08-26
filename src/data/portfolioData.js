@@ -79,55 +79,68 @@ export const EDUCATION = [
 
 export const SKILLS_CATEGORIES = [
   {
+    id: "genai-llm",
+    title: "Generative AI, LLMs & Prompting",
+    icon: "Sparkles",
+    color: "from-cyan-500 to-indigo-600",
+    skills: [
+      { name: "Prompt Engineering & OpenAI GPT Models", level: 94, tag: "Master", project: "Food Bridge AI & Portfolio Chatbot" },
+      { name: "RAG & Knowledge Retrieval Systems", level: 88, tag: "Advanced", project: "AI Chatbot & Knowledge Base" },
+      { name: "LangChain & LlamaIndex Concepts", level: 85, tag: "Advanced", project: "AI Portfolio Assistant" },
+      { name: "Transformers & HuggingFace Models", level: 84, tag: "Advanced", project: "NLP Text Generation" },
+      { name: "AI Agent Orchestration & System Prompts", level: 90, tag: "Expert", project: "Antigravity Agentic Workflows" }
+    ]
+  },
+  {
     id: "ml-ai-nlp",
-    title: "Machine Learning, AI & NLP",
+    title: "Machine Learning & Deep Learning",
     icon: "Brain",
     color: "from-purple-500 to-indigo-600",
     skills: [
-      { name: "Machine Learning (Supervised/Unsupervised)", level: 92, tag: "Expert" },
-      { name: "ML Algorithms (Random Forest, XGBoost, SVM, KNN)", level: 90, tag: "Expert" },
-      { name: "Deep Learning (TensorFlow, PyTorch, Keras)", level: 85, tag: "Advanced" },
-      { name: "NLP Techniques (NER, TF-IDF, Tokenization, POS Tagging)", level: 88, tag: "Advanced" },
-      { name: "Computer Vision & OpenCV", level: 82, tag: "Proficient" },
-      { name: "Prompt Engineering & OpenAI GPT Models", level: 92, tag: "Expert" }
+      { name: "Machine Learning (Supervised/Unsupervised)", level: 92, tag: "Expert", project: "Movie Recommendation & EDA Suite" },
+      { name: "ML Algorithms (Random Forest, XGBoost, SVM, KNN)", level: 90, tag: "Expert", project: "Demand Forecasting & Analytics" },
+      { name: "Deep Learning (TensorFlow, PyTorch, Keras)", level: 85, tag: "Advanced", project: "Neural Network Classification" },
+      { name: "NLP Techniques (NER, TF-IDF, POS Tagging)", level: 88, tag: "Advanced", project: "Movie Recommendation Engine" },
+      { name: "Computer Vision & OpenCV", level: 82, tag: "Proficient", project: "Visual Processing Systems" }
     ]
   },
   {
     id: "web-frameworks",
     title: "Full-Stack Frameworks & Web Dev",
     icon: "Code2",
-    color: "from-cyan-500 to-blue-600",
+    color: "from-blue-500 to-cyan-600",
     skills: [
-      { name: "FastAPI & REST APIs", level: 88, tag: "Advanced" },
-      { name: "Django & Flask", level: 86, tag: "Advanced" },
-      { name: "React.js", level: 85, tag: "Advanced" },
-      { name: "JavaScript (ES6+) & HTML5/CSS3 / Tailwind", level: 90, tag: "Expert" },
-      { name: "Streamlit & Gradio AI Apps", level: 92, tag: "Expert" }
+      { name: "FastAPI & Asynchronous REST APIs", level: 90, tag: "Expert", project: "Food Bridge AI Backend" },
+      { name: "Django & Flask", level: 88, tag: "Advanced", project: "BizzApp & Recommendation API" },
+      { name: "React.js & Tailwind CSS v4", level: 92, tag: "Expert", project: "Food Bridge AI & Arus Homes" },
+      { name: "JavaScript (ES6+) & HTML5/CSS3", level: 90, tag: "Expert", project: "Arus Homes Real Estate App" },
+      { name: "Streamlit & Gradio AI Dashboards", level: 92, tag: "Expert", project: "AI-Powered EDA Analytics Suite" }
     ]
   },
   {
     id: "data-bi-viz",
-    title: "Data Analytics, BI & Visualization",
+    title: "Data Analytics, BI & Databases",
     icon: "Database",
     color: "from-emerald-500 to-teal-600",
     skills: [
-      { name: "Python (Pandas, NumPy, Scikit-Learn)", level: 95, tag: "Expert" },
-      { name: "SQL & MySQL", level: 88, tag: "Advanced" },
-      { name: "Matplotlib & Seaborn Data Visualization", level: 90, tag: "Expert" },
-      { name: "Power BI & Tableau Dashboarding", level: 85, tag: "Advanced" },
-      { name: "Web Scraping & Data Cleaning", level: 88, tag: "Advanced" }
+      { name: "Python (Pandas, NumPy, Scikit-Learn)", level: 95, tag: "Master", project: "EDA Data Science Suite" },
+      { name: "SQL & MySQL Relational Schema", level: 88, tag: "Advanced", project: "BizzApp, Library & School Systems" },
+      { name: "Matplotlib & Seaborn Visualization", level: 90, tag: "Expert", project: "EDA Data Analytics Profiling" },
+      { name: "Power BI & Tableau Dashboarding", level: 85, tag: "Advanced", project: "Business Intelligence Reports" },
+      { name: "Data Cleaning & Feature Engineering", level: 90, tag: "Expert", project: "Infosys Food Waste Analytics" }
     ]
   },
   {
     id: "tools-ides",
-    title: "Tools, IDEs & Methodologies",
+    title: "Tools, DevOps & Cloud Deployment",
     icon: "Wrench",
     color: "from-amber-500 to-orange-600",
     skills: [
-      { name: "Git & GitHub", level: 90, tag: "Expert" },
-      { name: "Jupyter Notebook, PyCharm, VS Code", level: 95, tag: "Expert" },
-      { name: "Agile & Scrum Practices", level: 85, tag: "Advanced" },
-      { name: "Robotic Process Automation (RPA)", level: 78, tag: "Intermediate" }
+      { name: "Git & GitHub Version Control", level: 92, tag: "Expert", project: "All Software Repositories" },
+      { name: "Vercel & Render Cloud Deployment", level: 90, tag: "Expert", project: "Food Bridge AI & BizzApp" },
+      { name: "VS Code, PyCharm, Jupyter Notebook", level: 95, tag: "Master", project: "Development IDEs" },
+      { name: "Agile & Scrum Methodologies", level: 85, tag: "Advanced", project: "Infosys Internship Workflow" },
+      { name: "Robotic Process Automation (RPA)", level: 78, tag: "Intermediate", project: "Automation Scripts" }
     ]
   }
 ];
