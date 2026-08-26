@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CERTIFICATES } from '../data/portfolioData';
-import { Award, FileText, Search, Download, X, Sparkles, Eye, CheckCircle2, ShieldCheck, ChevronLeft, ChevronRight, RotateCcw, Repeat, Layers } from 'lucide-react';
+import { Award, FileText, Search, Download, X, Sparkles, Eye, CheckCircle2, ShieldCheck, ChevronLeft, ChevronRight, RotateCcw, Repeat, Layers, ExternalLink } from 'lucide-react';
 
 export const Certificates = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -59,14 +59,14 @@ export const Certificates = () => {
         <div className="flex flex-col items-center text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium mb-3 shadow-md">
             <Layers className="w-4 h-4 text-cyan-400" />
-            <span>ThreeUI 3D Character Carousel & Revolving Plates</span>
+            <span>ThreeUI 3D Character Carousel & Verified Document Plates</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            19+ Verified <span className="gradient-text">Character Carousel</span>
+            19+ Verified <span className="gradient-text">Certificate Document Plates</span>
           </h2>
           <div className="w-20 h-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full mt-3"></div>
           <p className="text-slate-300 max-w-2xl mt-4 text-sm sm:text-base">
-            Spin the 3D Character Carousel deck to navigate credentials, flip cards on their 3D axis, and preview verified PDF certificates!
+            Spin the 3D Character Carousel to preview live certificate documents, inspect verified seals, and download official PDF records!
           </p>
         </div>
 
@@ -106,7 +106,7 @@ export const Certificates = () => {
 
         {/* THREEUI 3D CHARACTER CAROUSEL STAGE */}
         {filteredCertificates.length > 0 ? (
-          <div className="relative w-full max-w-5xl mx-auto py-10">
+          <div className="relative w-full max-w-5xl mx-auto py-8">
             
             {/* Carousel Navigation Arrows */}
             <button
@@ -126,7 +126,7 @@ export const Certificates = () => {
             </button>
 
             {/* 3D Cylindrical Carousel Wrapper */}
-            <div className="relative h-[420px] w-full flex items-center justify-center perspective-1000">
+            <div className="relative h-[460px] w-full flex items-center justify-center perspective-1000">
               
               {filteredCertificates.map((cert, index) => {
                 const total = filteredCertificates.length;
@@ -138,12 +138,12 @@ export const Certificates = () => {
 
                 const isActive = offset === 0;
                 const isFlipped = !!flippedCards[cert.id];
+                const pdfPath = cert.file || cert.fileUrl;
 
                 // 3D Cylinder Spatial Math
-                const angle = offset * (360 / Math.min(total, 7));
                 const rotateY = Math.max(-60, Math.min(60, offset * 25));
-                const translateX = offset * 260;
-                const translateZ = isActive ? 80 : -Math.abs(offset) * 120;
+                const translateX = offset * 270;
+                const translateZ = isActive ? 90 : -Math.abs(offset) * 120;
                 const opacity = Math.max(0, 1 - Math.abs(offset) * 0.35);
                 const scale = isActive ? 1.05 : Math.max(0.75, 1 - Math.abs(offset) * 0.15);
 
@@ -155,7 +155,7 @@ export const Certificates = () => {
                     onClick={() => {
                       if (!isActive) setActiveCarouselIndex(index);
                     }}
-                    className="absolute w-[320px] sm:w-[360px] h-[360px] cursor-pointer transition-all duration-500 ease-out"
+                    className="absolute w-[330px] sm:w-[380px] h-[440px] cursor-pointer transition-all duration-500 ease-out"
                     style={{
                       transform: `translate3d(${translateX}px, 0px, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
                       opacity: opacity,
@@ -167,13 +167,14 @@ export const Certificates = () => {
                         isFlipped ? 'rotate-y-180' : ''
                       }`}
                     >
-                      {/* FRONT CARD FACE */}
-                      <div className={`absolute inset-0 w-full h-full glass-card rounded-3xl p-6 border shadow-2xl flex flex-col justify-between backface-hidden transition duration-300 ${
-                        isActive ? 'border-cyan-500/70 shadow-cyan-500/20 bg-slate-900/95' : 'border-slate-800 bg-slate-950/80'
+                      {/* FRONT CARD FACE WITH LIVE DOCUMENT PREVIEW THUMBNAIL */}
+                      <div className={`absolute inset-0 w-full h-full glass-card rounded-3xl p-5 border shadow-2xl flex flex-col justify-between backface-hidden transition duration-300 ${
+                        isActive ? 'border-cyan-500/80 shadow-cyan-500/25 bg-slate-900/95' : 'border-slate-800 bg-slate-950/80'
                       }`}>
                         <div>
-                          <div className="flex items-center justify-between gap-2 mb-3">
-                            <span className="px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 text-xs font-mono font-medium border border-cyan-800">
+                          {/* Top Badges */}
+                          <div className="flex items-center justify-between gap-2 mb-2">
+                            <span className="px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 text-xs font-mono font-semibold border border-cyan-800">
                               {cert.category}
                             </span>
                             <span className="flex items-center gap-1 text-slate-400 text-xs font-mono">
@@ -182,36 +183,62 @@ export const Certificates = () => {
                             </span>
                           </div>
 
-                          <h3 className="text-lg font-bold text-white leading-tight mb-2">
+                          <h3 className="text-base font-bold text-white leading-snug mb-1 truncate">
                             {cert.title}
                           </h3>
-                          <div className="text-xs font-semibold text-cyan-400 mb-3 flex items-center gap-1.5">
+                          <div className="text-xs font-medium text-cyan-400 mb-2 flex items-center gap-1">
                             <CheckCircle2 className="w-3.5 h-3.5" />
                             <span>Issued by {cert.issuer}</span>
                           </div>
-                          <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed">
-                            {cert.description}
-                          </p>
+
+                          {/* LIVE DOCUMENT PREVIEW THUMBNAIL BOX */}
+                          <div className="w-full h-44 rounded-2xl bg-slate-950 border border-slate-800 overflow-hidden relative group/thumb my-1 shadow-inner">
+                            {pdfPath ? (
+                              <iframe
+                                src={`${pdfPath}#toolbar=0&navpanes=0&scrollbar=0`}
+                                title={cert.title}
+                                className="w-full h-full border-0 pointer-events-none scale-100 opacity-90 group-hover/thumb:opacity-100 transition duration-300"
+                              />
+                            ) : (
+                              <div className="flex flex-col items-center justify-center h-full p-4 text-center">
+                                <Award className="w-12 h-12 text-cyan-400 mb-2 animate-bounce" />
+                                <span className="text-xs font-bold text-white">Verified Certificate Plate</span>
+                              </div>
+                            )}
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+                          </div>
                         </div>
 
-                        <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
-                          <span className="text-[11px] font-mono text-slate-400">Click to flip 3D door</span>
+                        {/* Front Card Footer Bar */}
+                        <div className="pt-2 border-t border-slate-800 flex items-center justify-between gap-2">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveCertificateModal(cert);
+                            }}
+                            className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-xs shadow-md hover:scale-105 transition"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>Preview Full Document</span>
+                          </button>
+
                           <button
                             type="button"
                             onClick={(e) => toggleDoorFlip(cert.id, e)}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-500/20 text-cyan-300 text-xs font-semibold border border-cyan-500/30 hover:bg-cyan-500/30 transition"
+                            className="p-2 rounded-xl bg-slate-950 text-cyan-300 border border-slate-800 hover:border-cyan-500/50 transition"
+                            title="Flip 3D Card"
                           >
-                            <Repeat className="w-3.5 h-3.5" />
-                            <span>Flip 3D &rarr;</span>
+                            <Repeat className="w-4 h-4" />
                           </button>
                         </div>
                       </div>
 
-                      {/* BACK CARD FACE (3D ROTATED) */}
+                      {/* BACK CARD FACE (REVEALED ON 3D FLIP) */}
                       <div className="absolute inset-0 w-full h-full glass-card rounded-3xl p-6 border-2 border-cyan-500/70 shadow-2xl flex flex-col justify-between backface-hidden rotate-y-180 bg-slate-900/95">
                         <div>
                           <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-                            <span className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">Verified Credential Details</span>
+                            <span className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">Verified Credential Record</span>
                             <button
                               type="button"
                               onClick={(e) => toggleDoorFlip(cert.id, e)}
@@ -248,9 +275,9 @@ export const Certificates = () => {
                             <span>Preview PDF</span>
                           </button>
 
-                          {(cert.file || cert.fileUrl) && (
+                          {pdfPath && (
                             <a
-                              href={cert.file || cert.fileUrl}
+                              href={pdfPath}
                               download
                               onClick={(e) => e.stopPropagation()}
                               className="p-2 rounded-xl bg-slate-950 text-slate-300 hover:text-white border border-slate-800"
