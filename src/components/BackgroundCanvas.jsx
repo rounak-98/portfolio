@@ -25,7 +25,7 @@ export const BackgroundCanvas = () => {
     const colors = new Float32Array(particleCount * 3);
 
     const cyanColor = new THREE.Color(0x38bdf8);
-    const purpleColor = new THREE.Color(0xa855f7);
+    const cobaltColor = new THREE.Color(0x0284c7);
 
     for (let i = 0; i < particleCount; i++) {
       const radius = 180 + (Math.random() - 0.5) * 60;
@@ -41,7 +41,7 @@ export const BackgroundCanvas = () => {
       positions[i * 3 + 2] = z;
 
       const mixRatio = Math.random();
-      const vertexColor = cyanColor.clone().lerp(purpleColor, mixRatio);
+      const vertexColor = cyanColor.clone().lerp(cobaltColor, mixRatio);
       colors[i * 3] = vertexColor.r;
       colors[i * 3 + 1] = vertexColor.g;
       colors[i * 3 + 2] = vertexColor.b;
@@ -117,7 +117,7 @@ export const BackgroundCanvas = () => {
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {/* ThreeUI Ambient Glow Fields */}
       <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-[120px] animate-pulse-slow pointer-events-none"></div>
-      <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[120px] animate-pulse-slow pointer-events-none delay-1000"></div>
+      <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[120px] animate-pulse-slow pointer-events-none delay-1000"></div>
       <div className="absolute -bottom-40 left-1/3 w-[500px] h-[500px] bg-indigo-500/15 rounded-full blur-[120px] animate-pulse-slow pointer-events-none delay-2000"></div>
       <div ref={mountRef} className="w-full h-full block opacity-70" />
     </div>
