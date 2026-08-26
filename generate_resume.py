@@ -6,6 +6,9 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
 
 def create_resume(output_filename):
+    # Total Printable Width = 612 (letter width) - 30 (left margin) - 30 (right margin) = 552pt
+    PRINTABLE_WIDTH = 552
+    
     doc = SimpleDocTemplate(
         output_filename,
         pagesize=letter,
@@ -24,7 +27,7 @@ def create_resume(output_filename):
     MUTED_COLOR = colors.HexColor('#475569')       # Slate 600
     LINE_COLOR = colors.HexColor('#cbd5e1')        # Slate 300
 
-    # ATS Custom Paragraph Styles
+    # ATS Custom Paragraph Styles - Consistent Hierarchy
     style_name = ParagraphStyle(
         'NameStyle',
         parent=styles['Normal'],
@@ -84,6 +87,16 @@ def create_resume(output_filename):
         textColor=PRIMARY_COLOR
     )
 
+    style_right_align = ParagraphStyle(
+        'RightAlignCustom',
+        parent=styles['Normal'],
+        fontName='Helvetica-Bold',
+        fontSize=8.5,
+        leading=11,
+        alignment=TA_RIGHT,
+        textColor=ACCENT_COLOR
+    )
+
     style_bullet = ParagraphStyle(
         'BulletCustom',
         parent=styles['Normal'],
@@ -127,6 +140,15 @@ def create_resume(output_filename):
     story.append(summary_p)
     story.append(Spacer(1, 5))
 
+    # Unified Table Style
+    common_table_style = TableStyle([
+        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('LEFTPADDING', (0,0), (-1,-1), 0),
+        ('RIGHTPADDING', (0,0), (-1,-1), 0),
+        ('TOPPADDING', (0,0), (-1,-1), 0.5),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 0.5),
+    ])
+
     # --- CORE SKILLS ---
     story.append(Paragraph("CORE SKILLS", style_heading))
     story.append(HRFlowable(width="100%", thickness=0.5, color=LINE_COLOR, spaceAfter=3, spaceBefore=0))
@@ -139,14 +161,8 @@ def create_resume(output_filename):
         [Paragraph("<b>Libraries & BI Tools:</b>", style_body_bold), Paragraph("Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch, Matplotlib, Seaborn, Power BI, Tableau", style_body)],
         [Paragraph("<b>Tools & Deployment:</b>", style_body_bold), Paragraph("Git, GitHub, Vercel, Render, VS Code, Jupyter Notebook, PyCharm", style_body)],
     ]
-    t_skills = Table(skills_data, colWidths=[110, 440])
-    t_skills.setStyle(TableStyle([
-        ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 0.5),
-        ('TOPPADDING', (0,0), (-1,-1), 0.5),
-        ('LEFTPADDING', (0,0), (-1,-1), 0),
-        ('RIGHTPADDING', (0,0), (-1,-1), 0),
-    ]))
+    t_skills = Table(skills_data, colWidths=[112, 440]) # Total = 552
+    t_skills.setStyle(common_table_style)
     story.append(t_skills)
     story.append(Spacer(1, 5))
 
@@ -157,15 +173,10 @@ def create_resume(output_filename):
     # Experience 1: Infosys Internship
     exp_header = [
         Paragraph("<b>AI Developer Intern</b> &nbsp;|&nbsp; <i>Infosys Springboard Internship 7.0</i>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>Ongoing (Virtual)</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("Ongoing (Virtual)", style_right_align)
     ]
-    t_exp = Table([exp_header], colWidths=[420, 130])
-    t_exp.setStyle(TableStyle([
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('LEFTPADDING', (0,0), (-1,-1), 0),
-        ('RIGHTPADDING', (0,0), (-1,-1), 0),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 1),
-    ]))
+    t_exp = Table([exp_header], colWidths=[412, 140]) # Total = 552
+    t_exp.setStyle(common_table_style)
     story.append(t_exp)
     story.append(Paragraph("• Architecting and developing the <b>Food Bridge AI</b> platform (<font color='#0284c7'>food-redistribution-ai.vercel.app</font>) for urban food waste reduction and surplus inventory management.", style_bullet))
     story.append(Paragraph("• <b>Tech Stack:</b> Python, FastAPI, React.js, Tailwind CSS, OpenAI GPT-4, Scikit-learn, MySQL, Vercel.", style_bullet))
@@ -174,15 +185,10 @@ def create_resume(output_filename):
     # Experience 2: Freelance Aurus Homes ERP
     exp2_header = [
         Paragraph("<b>Freelance Full-Stack Developer</b> &nbsp;|&nbsp; <i>Arus Homes Developers</i>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>Client Project</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("Client Project", style_right_align)
     ]
-    t_exp2 = Table([exp2_header], colWidths=[420, 130])
-    t_exp2.setStyle(TableStyle([
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-        ('LEFTPADDING', (0,0), (-1,-1), 0),
-        ('RIGHTPADDING', (0,0), (-1,-1), 0),
-        ('BOTTOMPADDING', (0,0), (-1,-1), 1),
-    ]))
+    t_exp2 = Table([exp2_header], colWidths=[412, 140]) # Total = 552
+    t_exp2.setStyle(common_table_style)
     story.append(t_exp2)
     story.append(Paragraph("• Architected and engineered <b>Aurus Homes ERP</b>, a full-scale Next.js 14 Enterprise System for real estate sales ledgers, construction site procurement, and payment receipts.", style_bullet))
     story.append(Paragraph("• Integrated Google Gemini AI for predictive cash flow forecasting, Recharts for executive sales reporting, and jsPDF for automated PDF booking agreement generation.", style_bullet))
@@ -196,10 +202,10 @@ def create_resume(output_filename):
     # Project 1: BizzApp
     p1_head = [
         Paragraph("<b>BizzApp - Smart Business Management Application</b>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>bizzapp.onrender.com</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("bizzapp.onrender.com", style_right_align)
     ]
-    t_p1 = Table([p1_head], colWidths=[390, 160])
-    t_p1.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
+    t_p1 = Table([p1_head], colWidths=[412, 140]) # Total = 552
+    t_p1.setStyle(common_table_style)
     story.append(t_p1)
     story.append(Paragraph("• Engineered an enterprise web application for inventory control, customer quotation processing, GST invoicing, and revenue analytics.", style_bullet))
     story.append(Paragraph("• <b>Tech Stack:</b> Python, Django, MySQL, HTML5/CSS3, JavaScript, Render Cloud.", style_bullet))
@@ -208,10 +214,10 @@ def create_resume(output_filename):
     # Project 2: School Management
     p2_head = [
         Paragraph("<b>School Management System</b>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>GitHub Repository</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("GitHub Repository", style_right_align)
     ]
-    t_p2 = Table([p2_head], colWidths=[420, 130])
-    t_p2.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
+    t_p2 = Table([p2_head], colWidths=[412, 140]) # Total = 552
+    t_p2.setStyle(common_table_style)
     story.append(t_p2)
     story.append(Paragraph("• Developed an automated school administration platform for student enrollment, course grading, attendance tracking, and fee records.", style_bullet))
     story.append(Paragraph("• <b>Tech Stack:</b> Python, Django, MySQL, HTML5/CSS3, Bootstrap.", style_bullet))
@@ -220,10 +226,10 @@ def create_resume(output_filename):
     # Project 3: EDA Analytics Suite
     p3_head = [
         Paragraph("<b>AI-Powered EDA & Data Analytics Suite</b>", style_body_bold),
-        Paragraph("<font color='#0284c7'><b>GitHub Repository</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("GitHub Repository", style_right_align)
     ]
-    t_p3 = Table([p3_head], colWidths=[430, 120])
-    t_p3.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
+    t_p3 = Table([p3_head], colWidths=[412, 140]) # Total = 552
+    t_p3.setStyle(common_table_style)
     story.append(t_p3)
     story.append(Paragraph("• Developed an interactive data analytics platform performing correlation profiling, automated outlier detection, and AI-driven summary insights.", style_bullet))
     story.append(Paragraph("• <b>Tech Stack:</b> Python, Streamlit, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn.", style_bullet))
@@ -235,18 +241,18 @@ def create_resume(output_filename):
 
     edu1 = [
         Paragraph("<b>B.Tech in Computer Engineering</b> &nbsp;|&nbsp; <i>Bharati Vidyapeeth College of Engineering, Pune</i>", style_body),
-        Paragraph("<b>2023 – 2027 | CGPA: 8.7</b>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("2023 – 2027 | CGPA: 8.7", style_right_align)
     ]
-    t_e1 = Table([edu1], colWidths=[410, 140])
-    t_e1.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
+    t_e1 = Table([edu1], colWidths=[412, 140]) # Total = 552
+    t_e1.setStyle(common_table_style)
     story.append(t_e1)
 
     edu2 = [
         Paragraph("<b>Saint Francis School</b> &nbsp;|&nbsp; <i>12th Standard (Science): 80.4% &nbsp;•&nbsp; 10th Standard: 93.0%</i>", style_body),
-        Paragraph("<b>2021 – 2023</b>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+        Paragraph("2021 – 2023", style_right_align)
     ]
-    t_e2 = Table([edu2], colWidths=[430, 120])
-    t_e2.setStyle(TableStyle([('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0)]))
+    t_e2 = Table([edu2], colWidths=[412, 140]) # Total = 552
+    t_e2.setStyle(common_table_style)
     story.append(t_e2)
     story.append(Spacer(1, 5))
 
