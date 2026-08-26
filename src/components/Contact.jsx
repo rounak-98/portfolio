@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { Mail, Phone, MapPin, Send, Copy, Check, Sparkles, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Copy, Check, Sparkles, MessageSquare, Loader2, AlertCircle } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
-
 
 export const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [copiedField, setCopiedField] = useState(null);
-  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [statusState, setStatusState] = useState(null); // null | 'success' | 'error'
 
   const handleCopy = (text, field) => {
     navigator.clipboard.writeText(text);
@@ -15,14 +15,54 @@ export const Contact = () => {
     setTimeout(() => setCopiedField(null), 2000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 4000);
+
+    setSubmitting(true);
+    setStatusState(null);
+
+    try {
+      // Direct Web3Forms submission to rounakpathak9080@gmail.com
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '5fb3fb21-4f18-42f2-8ef7-320c02f0eb3a', // Web3Forms public form endpoint
+          to_email: 'rounakpathak9080@gmail.com',
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `Portfolio Contact from ${formData.name}`,
+          message: formData.message,
+          from_name: 'Rounak Pathak Portfolio Website'
+        })
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatusState('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        // Fallback to mailto protocol if API response fails
+        triggerMailto();
+      }
+    } catch (err) {
+      console.warn('Direct API submission failed, triggering mailto fallback...', err);
+      triggerMailto();
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const triggerMailto = () => {
+    const mailtoSubject = encodeURIComponent(formData.subject || `Portfolio Contact from ${formData.name}`);
+    const mailtoBody = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+    window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
+    setStatusState('success');
+    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   return (
@@ -40,7 +80,7 @@ export const Contact = () => {
           </h2>
           <div className="w-20 h-1.5 bg-gradient-to-r from-cyan-500 to-indigo-600 rounded-full mt-3"></div>
           <p className="text-slate-300 max-w-2xl mt-4 text-base">
-            Have a project in mind, software opportunity, or just want to chat about AI & full-stack engineering? Reach out directly or drop a message!
+            Have a software engineering opportunity, freelance project, or just want to discuss AI & full-stack development? Drop a message below or email me directly!
           </p>
         </div>
 
@@ -98,7 +138,7 @@ export const Contact = () => {
 
             {/* Social Links Banner */}
             <div className="glass-card p-6 rounded-3xl border border-slate-800 shadow-xl space-y-4">
-              <div className="text-xs font-mono text-cyan-400 uppercase tracking-wider">Social Platforms</div>
+              <div className="text-xs font-mono text-cyan-400 uppercase tracking-wider">Social & Professional Platforms</div>
               <div className="grid grid-cols-2 gap-3">
                 <a
                   href={PERSONAL_INFO.github}
@@ -128,18 +168,26 @@ export const Contact = () => {
           <div className="lg:col-span-7">
             <div className="glass-card p-8 rounded-3xl border border-slate-800/80 shadow-2xl space-y-6">
               
-              <div className="border-b border-slate-800 pb-4">
-                <h3 className="text-xl font-bold text-white">Send a Message</h3>
-                <p className="text-xs text-slate-400 font-mono">Fill out the form below and I will get back to you promptly.</p>
+              <div className="border-b border-slate-800 pb-4 flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-white">Send Direct Message</h3>
+                  <p className="text-xs text-slate-400 font-mono">Delivered straight to rounakpathak9080@gmail.com</p>
+                </div>
               </div>
 
-              {submitted ? (
+              {statusState === 'success' ? (
                 <div className="p-8 rounded-2xl bg-emerald-950/40 border border-emerald-500/40 text-center space-y-3 animate-in zoom-in-95">
                   <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center">
                     <Check className="w-6 h-6" />
                   </div>
-                  <h4 className="text-lg font-bold text-white">Message Sent Successfully!</h4>
-                  <p className="text-xs text-slate-300">Thank you for reaching out, Rounak will get back to your email shortly.</p>
+                  <h4 className="text-lg font-bold text-white">Message Delivered Successfully!</h4>
+                  <p className="text-xs text-slate-300">Thank you for reaching out! Rounak will review your message and reply shortly.</p>
+                  <button
+                    onClick={() => setStatusState(null)}
+                    className="mt-4 px-4 py-2 rounded-xl glass-card text-xs text-cyan-400 font-semibold border border-cyan-500/30"
+                  >
+                    Send Another Message
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -152,19 +200,19 @@ export const Contact = () => {
                         placeholder="John Doe"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-900/90 text-sm text-slate-100 placeholder-slate-500 border border-slate-800 focus:outline-none focus:border-cyan-500 transition"
+                        className="w-full px-4 py-3 rounded-xl glass-card text-sm text-white placeholder-slate-500 border border-slate-800 focus:outline-none focus:border-cyan-500 transition"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-mono text-slate-300">Your Email *</label>
+                      <label className="text-xs font-mono text-slate-300">Email Address *</label>
                       <input
                         type="email"
                         required
                         placeholder="john@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-900/90 text-sm text-slate-100 placeholder-slate-500 border border-slate-800 focus:outline-none focus:border-cyan-500 transition"
+                        className="w-full px-4 py-3 rounded-xl glass-card text-sm text-white placeholder-slate-500 border border-slate-800 focus:outline-none focus:border-cyan-500 transition"
                       />
                     </div>
                   </div>
@@ -173,32 +221,43 @@ export const Contact = () => {
                     <label className="text-xs font-mono text-slate-300">Subject</label>
                     <input
                       type="text"
-                      placeholder="Software Project / Collaboration Opportunity"
+                      placeholder="Project Opportunity / AI Consultation"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-900/90 text-sm text-slate-100 placeholder-slate-500 border border-slate-800 focus:outline-none focus:border-cyan-500 transition"
+                      className="w-full px-4 py-3 rounded-xl glass-card text-sm text-white placeholder-slate-500 border border-slate-800 focus:outline-none focus:border-cyan-500 transition"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-mono text-slate-300">Message *</label>
+                    <label className="text-xs font-mono text-slate-300">Your Message *</label>
                     <textarea
                       required
-                      rows={4}
-                      placeholder="Hi Rounak, I loved your Food Redistribution project and would like to discuss..."
+                      rows={5}
+                      placeholder="Hi Rounak, I'd like to discuss a project..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-900/90 text-sm text-slate-100 placeholder-slate-500 border border-slate-800 focus:outline-none focus:border-cyan-500 transition resize-none"
-                    ></textarea>
+                      className="w-full px-4 py-3 rounded-xl glass-card text-sm text-white placeholder-slate-500 border border-slate-800 focus:outline-none focus:border-cyan-500 transition resize-none"
+                    />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-semibold text-base shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.01] active:scale-[0.99] transition"
+                    disabled={submitting}
+                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 text-white font-bold text-sm shadow-lg shadow-cyan-500/20 hover:scale-[1.01] active:scale-[0.98] transition duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
                   >
-                    <Send className="w-5 h-5" />
-                    <span>Send Message</span>
+                    {submitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin text-white" />
+                        <span>Sending Message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        <span>Send Message Now</span>
+                      </>
+                    )}
                   </button>
+
                 </form>
               )}
 

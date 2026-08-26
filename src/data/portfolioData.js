@@ -38,8 +38,18 @@ export const EXPERIENCE = [
     company: "Infosys Springboard Internship 7.0 (Virtual)",
     period: "Ongoing",
     status: "Virtual Internship",
+    type: "Internship",
     demo: "https://food-redistribution-ai.vercel.app/",
-    details: "Developing an AI-Based Food Redistribution System for Waste Reduction and Surplus Inventory Management. Building demand forecasting, inventory management, and intelligent donor-recipient matching modules using Python, FastAPI, React, Pandas, NumPy, Scikit-learn, SQL, and Streamlit."
+    details: "Developing the Food Bridge AI platform for Waste Reduction and Surplus Inventory Management. Building demand forecasting, inventory management, and intelligent donor-recipient matching modules using Python, FastAPI, React, Pandas, NumPy, Scikit-learn, SQL, and Streamlit."
+  },
+  {
+    role: "Freelance Full-Stack Developer",
+    company: "Arus Homes Developers",
+    period: "Client Project",
+    status: "Freelance",
+    type: "Freelance",
+    demo: "#",
+    details: "Architected and engineered the Arus Homes real estate platform for property showcases, virtual tours, customer inquiry management, and lead tracking system."
   }
 ];
 
@@ -124,13 +134,15 @@ export const SKILLS_CATEGORIES = [
 
 export const PROJECTS = [
   {
-    id: "food-redistribution",
-    title: "AI-Powered Food Redistribution Platform",
+    id: "food-bridge-ai",
+    title: "Food Bridge AI - Redistribution Platform",
     category: "Full Stack & Web",
+    type: "experience",
+    client: "Infosys Springboard Internship 7.0",
     featured: true,
     github: "https://github.com/rounak-98",
     demo: "https://food-redistribution-ai.vercel.app/",
-    summary: "A smart full-stack AI platform built with React frontend and FastAPI backend designed to minimize food waste by seamlessly connecting surplus donors with local NGOs.",
+    summary: "A smart full-stack AI platform built during Infosys Springboard Internship 7.0 connecting surplus food donors with local NGOs.",
     description: "Built using React.js, FastAPI (Python), MySQL, and Tailwind CSS. Features real-time donor listings with geo-tagging, automated claim notifications, demand forecasting algorithms, and NGO pickup dispatching. Deployed live on Vercel.",
     tags: ["React", "FastAPI", "Python", "REST API", "MySQL", "Tailwind CSS", "Vercel"],
     highlights: [
@@ -140,6 +152,26 @@ export const PROJECTS = [
     ],
     gradient: "from-emerald-500/20 to-teal-500/20",
     border: "border-emerald-500/30"
+  },
+  {
+    id: "arus-homes",
+    title: "Arus Homes - Real Estate & Property Platform",
+    category: "Full Stack & Web",
+    type: "experience",
+    client: "Arus Homes Developers (Freelance)",
+    featured: true,
+    github: "https://github.com/rounak-98",
+    demo: "#",
+    summary: "Freelance web application engineered for Arus Homes Developers to showcase luxury properties, manage buyer inquiries, and capture sales leads.",
+    description: "Designed a high-converting, modern real estate platform featuring property listing catalogs, interactive filter maps, virtual tour embeds, customer inquiry forms, and automated CRM lead notifications.",
+    tags: ["React / Django", "JavaScript", "HTML5/CSS3", "Tailwind CSS", "MySQL", "Freelance"],
+    highlights: [
+      "Dynamic property filtering matrix by price, location, and amenity configurations",
+      "Integrated customer inquiry & lead generation CRM workflow",
+      "Optimized fast image & video virtual tour rendering pipeline"
+    ],
+    gradient: "from-amber-500/20 to-orange-500/20",
+    border: "border-amber-500/30"
   },
   {
     id: "eda-analysis",

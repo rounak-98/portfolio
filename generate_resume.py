@@ -167,9 +167,24 @@ def create_resume(output_filename):
     ]))
     story.append(t_exp)
 
-    story.append(Paragraph("• Architecting and developing an <b>AI-Based Food Redistribution System</b> (<font color='#0284c7'>food-redistribution-ai.vercel.app</font>) for urban waste reduction and surplus inventory management.", style_bullet))
+    story.append(Paragraph("• Architecting and developing the <b>Food Bridge AI</b> platform (<font color='#0284c7'>food-redistribution-ai.vercel.app</font>) for waste reduction and surplus inventory management.", style_bullet))
     story.append(Paragraph("• Engineering demand forecasting models, real-time inventory tracking, and intelligent donor-recipient matching algorithms.", style_bullet))
-    story.append(Paragraph("• Built full-stack workflows using <b>React.js, FastAPI (Python), MySQL, Tailwind CSS, Pandas, NumPy, Scikit-learn, and Streamlit</b>.", style_bullet))
+    story.append(Spacer(1, 3))
+
+    # Experience 2: Freelance
+    exp2_header = [
+        Paragraph("<b>Freelance Software Developer</b> &nbsp;|&nbsp; <i>Arus Homes Developers</i>", style_body_bold),
+        Paragraph("<font color='#0284c7'><b>Client Project</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
+    ]
+    t_exp2 = Table([exp2_header], colWidths=[420, 130])
+    t_exp2.setStyle(TableStyle([
+        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('LEFTPADDING', (0,0), (-1,-1), 0),
+        ('RIGHTPADDING', (0,0), (-1,-1), 0),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 1),
+    ]))
+    story.append(t_exp2)
+    story.append(Paragraph("• Designed and built the <b>Arus Homes</b> real estate & property platform for property showcases, virtual tours, and client lead management.", style_bullet))
     story.append(Spacer(1, 5))
 
     # --- FEATURED PROJECTS ---

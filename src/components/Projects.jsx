@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
 import { PROJECTS } from '../data/portfolioData';
-import { ExternalLink, Sparkles, FolderGit2, Star, Check, X, ArrowUpRight, Code, Layers } from 'lucide-react';
+import { FolderGit2, ExternalLink, ArrowUpRight, Star, Layers, Code, X, Check, Briefcase, Sparkles, Building2 } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 
-
 export const Projects = () => {
-  const [selectedFilter, setSelectedFilter] = useState('All');
+  const [selectedTab, setSelectedTab] = useState('All');
   const [activeModalProject, setActiveModalProject] = useState(null);
 
-  const filters = ['All', 'Full Stack & Web', 'AI & Data Science'];
+  const tabs = [
+    'All',
+    'Experience & Freelance',
+    'Featured Apps',
+    'AI & Data Science',
+    'Full Stack & Web'
+  ];
 
-  const filteredProjects = PROJECTS.filter((p) => {
-    if (selectedFilter === 'All') return true;
-    return p.category === selectedFilter;
+  const filteredProjects = PROJECTS.filter((project) => {
+    if (selectedTab === 'All') return true;
+    if (selectedTab === 'Experience & Freelance') return project.type === 'experience';
+    if (selectedTab === 'Featured Apps') return project.featured && project.type !== 'experience';
+    if (selectedTab === 'AI & Data Science') return project.category === 'AI & Data Science';
+    if (selectedTab === 'Full Stack & Web') return project.category === 'Full Stack & Web';
+    return true;
   });
 
   return (
@@ -21,32 +30,32 @@ export const Projects = () => {
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono font-medium mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Featured Code & Builds</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-medium mb-3 shadow-sm">
+            <FolderGit2 className="w-4 h-4" />
+            <span>Software & Systems Portfolio</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Github & Featured <span className="gradient-text">Projects</span>
+            Featured <span className="gradient-text">Projects & Work</span>
           </h2>
           <div className="w-20 h-1.5 bg-gradient-to-r from-cyan-500 to-indigo-600 rounded-full mt-3"></div>
-          <p className="text-slate-300 max-w-2xl mt-4 text-base">
-            Explore my GitHub repositories and full-stack software applications including food redistribution systems, exploratory data science analysis, and business management apps.
+          <p className="text-slate-300 max-w-2xl mt-4 text-sm sm:text-base">
+            Explore my freelance client builds, internship software platforms, and full-stack GitHub repositories spanning AI, data analytics, and web systems.
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex justify-center gap-3 mb-10">
-          {filters.map((filter) => (
+        {/* Category Tabs Bar */}
+        <div className="flex items-center justify-center gap-2 mb-10 overflow-x-auto no-scrollbar pb-1">
+          {tabs.map((tab) => (
             <button
-              key={filter}
-              onClick={() => setSelectedFilter(filter)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                selectedFilter === filter
+              key={tab}
+              onClick={() => setSelectedTab(tab)}
+              className={`px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shrink-0 transition-all ${
+                selectedTab === tab
                   ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-lg shadow-cyan-500/25'
                   : 'glass-card text-slate-300 hover:text-white border border-slate-800'
               }`}
             >
-              {filter}
+              {tab}
             </button>
           ))}
         </div>
@@ -62,26 +71,41 @@ export const Projects = () => {
               <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${project.gradient}`}></div>
 
               <div>
-                {/* Header Badge */}
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="px-3 py-1 rounded-full bg-slate-900 text-cyan-400 text-xs font-mono font-medium border border-slate-800">
-                    {project.category}
+                {/* Header Badge Bar */}
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                  <span className="px-3 py-1 rounded-full bg-slate-900 text-cyan-400 text-xs font-mono font-medium border border-slate-800 flex items-center gap-1.5">
+                    {project.type === 'experience' ? <Building2 className="w-3.5 h-3.5 text-amber-400" /> : <Sparkles className="w-3.5 h-3.5 text-cyan-400" />}
+                    <span>{project.category}</span>
                   </span>
-                  {project.featured && (
-                    <span className="flex items-center gap-1 text-amber-400 text-xs font-semibold">
-                      <Star className="w-3.5 h-3.5 fill-amber-400" />
-                      <span>Featured</span>
+                  
+                  {project.type === 'experience' ? (
+                    <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 text-[11px] font-mono border border-amber-500/20 font-semibold">
+                      {project.client ? 'Client / Internship' : 'Work Experience'}
                     </span>
+                  ) : (
+                    project.featured && (
+                      <span className="flex items-center gap-1 text-amber-400 text-xs font-semibold">
+                        <Star className="w-3.5 h-3.5 fill-amber-400" />
+                        <span>Featured</span>
+                      </span>
+                    )
                   )}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors mb-3 flex items-center gap-2">
-                  <span>{project.title}</span>
+                <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-cyan-300 transition-colors mb-2">
+                  {project.title}
                 </h3>
+                
+                {project.client && (
+                  <div className="text-xs font-medium text-indigo-400 mb-3 flex items-center gap-1.5">
+                    <Briefcase className="w-3.5 h-3.5" />
+                    <span>{project.client}</span>
+                  </div>
+                )}
 
                 {/* Summary */}
-                <p className="text-slate-300 text-sm leading-relaxed mb-5 line-clamp-3">
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5 line-clamp-3">
                   {project.summary}
                 </p>
 
@@ -90,7 +114,7 @@ export const Projects = () => {
                   {project.tags.map((tag, tIdx) => (
                     <span
                       key={tIdx}
-                      className="px-2.5 py-1 rounded-lg bg-slate-900/90 text-slate-300 text-xs font-mono border border-slate-800"
+                      className="px-2.5 py-1 rounded-lg bg-slate-900/90 text-slate-300 text-[11px] font-mono border border-slate-800"
                     >
                       {tag}
                     </span>
@@ -104,7 +128,7 @@ export const Projects = () => {
                   onClick={() => setActiveModalProject(project)}
                   className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5"
                 >
-                  <span>View Architecture & Details</span>
+                  <span>View Details</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </button>
 
@@ -121,15 +145,17 @@ export const Projects = () => {
                       <span>Live Site</span>
                     </a>
                   )}
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 rounded-xl bg-slate-900 text-slate-300 hover:text-cyan-400 hover:scale-110 transition border border-slate-800"
-                    title="View GitHub Repository"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-2 rounded-xl bg-slate-900 text-slate-300 hover:text-cyan-400 hover:scale-110 transition border border-slate-800"
+                      title="View GitHub Repository"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -153,19 +179,26 @@ export const Projects = () => {
             </button>
 
             {/* Modal Content */}
-            <div className="space-y-4">
-              <span className="px-3 py-1 rounded-full bg-cyan-950 text-cyan-400 text-xs font-mono border border-cyan-800">
-                {activeModalProject.category}
-              </span>
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="px-3 py-1 rounded-full bg-cyan-950 text-cyan-400 text-xs font-mono border border-cyan-800">
+                  {activeModalProject.category}
+                </span>
+                {activeModalProject.client && (
+                  <span className="px-3 py-1 rounded-full bg-amber-950 text-amber-400 text-xs font-mono border border-amber-800">
+                    {activeModalProject.client}
+                  </span>
+                )}
+              </div>
               <h3 className="text-2xl font-extrabold text-white">{activeModalProject.title}</h3>
-              <p className="text-slate-300 text-base leading-relaxed">{activeModalProject.description}</p>
+              <p className="text-slate-300 text-sm leading-relaxed">{activeModalProject.description}</p>
             </div>
 
             {/* Key Highlights */}
             <div className="space-y-3 pt-2">
               <h4 className="text-sm font-mono text-cyan-400 uppercase tracking-wider flex items-center gap-2">
                 <Layers className="w-4 h-4" />
-                <span>Key Features & Innovations</span>
+                <span>Key Features & Deliverables</span>
               </h4>
               <div className="space-y-2">
                 {activeModalProject.highlights.map((item, idx) => (
@@ -213,15 +246,17 @@ export const Projects = () => {
                 </a>
               )}
 
-              <a
-                href={activeModalProject.github}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-semibold text-sm shadow-md"
-              >
-                <GithubIcon className="w-4 h-4" />
-                <span>Visit GitHub Repo</span>
-              </a>
+              {activeModalProject.github && (
+                <a
+                  href={activeModalProject.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-semibold text-sm shadow-md"
+                >
+                  <GithubIcon className="w-4 h-4" />
+                  <span>Visit GitHub Repo</span>
+                </a>
+              )}
             </div>
 
           </div>

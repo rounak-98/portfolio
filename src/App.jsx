@@ -9,6 +9,7 @@ import { Certificates } from './components/Certificates';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
+import { Chatbot } from './components/Chatbot';
 
 export function App() {
   const [theme, setTheme] = useState('dark');
@@ -54,6 +55,9 @@ export function App() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating AI Assistant Chatbot */}
+      <Chatbot onOpenResume={() => setResumeOpen(true)} />
 
       {/* Interactive Resume PDF Modal */}
       <ResumeModal
