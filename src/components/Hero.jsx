@@ -232,7 +232,7 @@ export const Hero = ({ onOpenResume }) => {
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div className="w-44 h-44 rounded-full overflow-hidden border-4 border-emerald-500/40 shadow-2xl backdrop-blur-md pointer-events-auto group">
                   <img
-                    src="https://raw.githubusercontent.com/rounak-98/portfolio/main/public/avatar.jpg"
+                    src={PERSONAL_INFO.avatar}
                     alt={PERSONAL_INFO.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                     onError={(e) => {

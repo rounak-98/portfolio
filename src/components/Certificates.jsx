@@ -248,9 +248,9 @@ export const Certificates = () => {
                             <span>Preview PDF</span>
                           </button>
 
-                          {cert.fileUrl && (
+                          {(cert.file || cert.fileUrl) && (
                             <a
-                              href={cert.fileUrl}
+                              href={cert.file || cert.fileUrl}
                               download
                               onClick={(e) => e.stopPropagation()}
                               className="p-2 rounded-xl bg-slate-950 text-slate-300 hover:text-white border border-slate-800"
@@ -311,9 +311,9 @@ export const Certificates = () => {
 
             {/* Embedded PDF Viewer Container */}
             <div className="flex-1 w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 relative">
-              {activeCertificateModal.fileUrl ? (
+              {(activeCertificateModal.file || activeCertificateModal.fileUrl) ? (
                 <iframe
-                  src={activeCertificateModal.fileUrl}
+                  src={activeCertificateModal.file || activeCertificateModal.fileUrl}
                   title={activeCertificateModal.title}
                   className="w-full h-full border-0"
                 />
@@ -337,9 +337,9 @@ export const Certificates = () => {
                 >
                   Close Preview
                 </button>
-                {activeCertificateModal.fileUrl && (
+                {(activeCertificateModal.file || activeCertificateModal.fileUrl) && (
                   <a
-                    href={activeCertificateModal.fileUrl}
+                    href={activeCertificateModal.file || activeCertificateModal.fileUrl}
                     download
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-xs shadow-md"
                   >
