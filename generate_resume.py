@@ -17,14 +17,14 @@ def create_resume(output_filename):
 
     styles = getSampleStyleSheet()
     
-    # Custom Palette - Cool Deep Cobalt & Slate
+    # ATS-Compliant Palette - Professional Dark Slate & Sky Blue
     PRIMARY_COLOR = colors.HexColor('#0f172a')     # Dark Slate
     ACCENT_COLOR = colors.HexColor('#0284c7')      # Sky Blue / Cyan
     TEXT_COLOR = colors.HexColor('#1e293b')        # Slate 800
     MUTED_COLOR = colors.HexColor('#475569')       # Slate 600
     LINE_COLOR = colors.HexColor('#cbd5e1')        # Slate 300
 
-    # Custom Paragraph Styles
+    # ATS Custom Paragraph Styles
     style_name = ParagraphStyle(
         'NameStyle',
         parent=styles['Normal'],
@@ -101,7 +101,7 @@ def create_resume(output_filename):
     # --- HEADER ---
     story.append(Paragraph("ROUNAK PATHAK", style_name))
     story.append(Spacer(1, 2))
-    story.append(Paragraph("Aspiring Data Analyst &nbsp;|&nbsp; Machine Learning Engineer &nbsp;|&nbsp; Full-Stack AI Developer", style_title))
+    story.append(Paragraph("Data Analyst &nbsp;|&nbsp; Machine Learning Engineer &nbsp;|&nbsp; Full-Stack AI Developer", style_title))
     story.append(Spacer(1, 3))
     
     contact_text = (
@@ -118,10 +118,10 @@ def create_resume(output_filename):
     # --- PROFESSIONAL SUMMARY ---
     story.append(Paragraph("PROFESSIONAL SUMMARY", style_heading))
     summary_p = Paragraph(
-        "Motivated Computer Engineering student at Bharati Vidyapeeth College of Engineering Pune (<b>CGPA: 8.7</b>) "
-        "specializing in data analytics, machine learning algorithms, and full-stack software development. Currently pursuing "
-        "<b>Infosys Springboard Internship 7.0</b> engineering the Food Bridge AI platform alongside building client real estate "
-        "applications (Arus Homes) and production web platforms (BizzApp, Library Management, EDA Suite).",
+        "Detail-oriented Computer Engineering student at Bharati Vidyapeeth College of Engineering Pune (<b>CGPA: 8.7</b>) "
+        "specializing in data analytics, machine learning algorithms, and production full-stack systems. Currently pursuing "
+        "<b>Infosys Springboard Internship 7.0</b> engineering the Food Bridge AI platform alongside building Aurus Homes ERP "
+        "(Next.js 14, Gemini AI) and production software platforms (BizzApp, School Management System, EDA Analytics Suite).",
         style_body
     )
     story.append(summary_p)
@@ -132,10 +132,10 @@ def create_resume(output_filename):
     story.append(HRFlowable(width="100%", thickness=0.5, color=LINE_COLOR, spaceAfter=3, spaceBefore=0))
     
     skills_data = [
-        [Paragraph("<b>Programming & DB:</b>", style_body_bold), Paragraph("Python, SQL & MySQL, JavaScript (ES6+), HTML5/CSS3", style_body)],
+        [Paragraph("<b>Programming & DB:</b>", style_body_bold), Paragraph("Python, MySQL, JavaScript (ES6+), TypeScript, HTML5/CSS3", style_body)],
         [Paragraph("<b>ML & AI Concepts:</b>", style_body_bold), Paragraph("Regression, Classification, Clustering, NLP, Deep Learning, Computer Vision, Prompt Engineering", style_body)],
         [Paragraph("<b>Algorithms & Stats:</b>", style_body_bold), Paragraph("Random Forest, XGBoost, SVM, Decision Trees, KNN, Naive Bayes, TF-IDF, NER", style_body)],
-        [Paragraph("<b>Frameworks & Web:</b>", style_body_bold), Paragraph("FastAPI, React.js, Django, Flask, Streamlit, Gradio, Tailwind CSS, REST APIs", style_body)],
+        [Paragraph("<b>Frameworks & Web:</b>", style_body_bold), Paragraph("Next.js 14, React.js, FastAPI, Django, Flask, Streamlit, Gradio, Tailwind CSS, REST APIs", style_body)],
         [Paragraph("<b>Libraries & BI Tools:</b>", style_body_bold), Paragraph("Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch, Matplotlib, Seaborn, Power BI, Tableau", style_body)],
         [Paragraph("<b>Tools & Deployment:</b>", style_body_bold), Paragraph("Git, GitHub, Vercel, Render, VS Code, Jupyter Notebook, PyCharm", style_body)],
     ]
@@ -154,6 +154,7 @@ def create_resume(output_filename):
     story.append(Paragraph("WORK EXPERIENCE", style_heading))
     story.append(HRFlowable(width="100%", thickness=0.5, color=LINE_COLOR, spaceAfter=3, spaceBefore=0))
 
+    # Experience 1: Infosys Internship
     exp_header = [
         Paragraph("<b>AI Developer Intern</b> &nbsp;|&nbsp; <i>Infosys Springboard Internship 7.0</i>", style_body_bold),
         Paragraph("<font color='#0284c7'><b>Ongoing (Virtual)</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
@@ -166,12 +167,11 @@ def create_resume(output_filename):
         ('BOTTOMPADDING', (0,0), (-1,-1), 1),
     ]))
     story.append(t_exp)
-
     story.append(Paragraph("• Architecting and developing the <b>Food Bridge AI</b> platform (<font color='#0284c7'>food-redistribution-ai.vercel.app</font>) for urban food waste reduction and surplus inventory management.", style_bullet))
-    story.append(Paragraph("• <b>Tech Stack:</b> Python, FastAPI, React.js, Tailwind CSS, OpenAI GPT-4, Scikit-learn, SQL & MySQL, Vercel.", style_bullet))
+    story.append(Paragraph("• <b>Tech Stack:</b> Python, FastAPI, React.js, Tailwind CSS, OpenAI GPT-4, Scikit-learn, MySQL, Vercel.", style_bullet))
     story.append(Spacer(1, 3))
 
-    # Experience 2: Freelance
+    # Experience 2: Freelance Aurus Homes ERP
     exp2_header = [
         Paragraph("<b>Freelance Full-Stack Developer</b> &nbsp;|&nbsp; <i>Arus Homes Developers</i>", style_body_bold),
         Paragraph("<font color='#0284c7'><b>Client Project</b></font>", ParagraphStyle('RText', parent=style_body, alignment=TA_RIGHT))
@@ -184,8 +184,9 @@ def create_resume(output_filename):
         ('BOTTOMPADDING', (0,0), (-1,-1), 1),
     ]))
     story.append(t_exp2)
-    story.append(Paragraph("• Designed and built the <b>Arus Homes</b> real estate & property showcase platform for virtual property tours, listing filters, and client inquiry lead capture.", style_bullet))
-    story.append(Paragraph("• <b>Tech Stack:</b> React.js, JavaScript (ES6+), Tailwind CSS, Node.js, REST APIs.", style_bullet))
+    story.append(Paragraph("• Architected and engineered <b>Aurus Homes ERP</b>, a full-scale Next.js 14 Enterprise System for real estate sales ledgers, construction site procurement, and payment receipts.", style_bullet))
+    story.append(Paragraph("• Integrated Google Gemini AI for predictive cash flow forecasting, Recharts for executive sales reporting, and jsPDF for automated PDF booking agreement generation.", style_bullet))
+    story.append(Paragraph("• <b>Tech Stack:</b> Next.js 14, TypeScript, React.js, Tailwind CSS, Google Gemini AI API, Recharts, jsPDF, JWT, MySQL.", style_bullet))
     story.append(Spacer(1, 5))
 
     # --- FEATURED REGULAR PROJECTS ---

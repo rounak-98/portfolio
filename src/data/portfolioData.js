@@ -40,7 +40,7 @@ export const EXPERIENCE = [
     status: "Virtual Internship",
     type: "Internship",
     demo: "https://food-redistribution-ai.vercel.app/",
-    details: "Developing the Food Bridge AI platform for Waste Reduction and Surplus Inventory Management. Building demand forecasting, inventory management, and intelligent donor-recipient matching modules using Python, FastAPI, React, Pandas, NumPy, Scikit-learn, SQL, and Streamlit."
+    details: "Developing the Food Bridge AI platform for Waste Reduction and Surplus Inventory Management. Building demand forecasting, inventory management, and intelligent donor-recipient matching modules using Python, FastAPI, React, Pandas, NumPy, Scikit-learn, MySQL, and Streamlit."
   },
   {
     role: "Freelance Full-Stack Developer",
@@ -49,7 +49,7 @@ export const EXPERIENCE = [
     status: "Freelance",
     type: "Freelance",
     demo: "#",
-    details: "Architected and engineered the Arus Homes real estate platform for property showcases, virtual tours, customer inquiry management, and lead tracking system."
+    details: "Engineered the Aurus Homes ERP Enterprise System using Next.js 14, TypeScript, React, Tailwind CSS, Google Gemini AI API, Recharts, and jsPDF. Built role-based executive dashboards for sales ledgers, site procurement, accounts, and automated PDF booking agreements."
   }
 ];
 
@@ -168,20 +168,20 @@ export const PROJECTS = [
   },
   {
     id: "arus-homes",
-    title: "Arus Homes - Real Estate & Property Platform",
+    title: "Aurus Homes ERP - Real Estate & Construction System",
     category: "Full Stack & Web",
     type: "experience",
     client: "Arus Homes Developers (Freelance)",
     featured: true,
     github: "https://github.com/rounak-98",
     demo: "#",
-    summary: "Freelance web application engineered for Arus Homes Developers to showcase luxury properties, manage buyer inquiries, and capture sales leads.",
-    description: "Designed a high-converting, modern real estate platform featuring property listing catalogs, interactive filter maps, virtual tour embeds, customer inquiry forms, and automated CRM lead notifications.",
-    tags: ["React / Django", "JavaScript", "HTML5/CSS3", "Tailwind CSS", "MySQL", "Freelance"],
+    summary: "Full-scale Enterprise Resource Planning (ERP) platform engineered for Arus Homes Developers to automate sales ledgers, construction procurement, and financial analytics.",
+    description: "Engineered a full-scale Next.js 14 ERP system for Arus Homes Developers. Integrated Google Gemini AI for predictive cash flow forecasting, Recharts for executive sales dashboards, jsPDF for automated PDF booking agreements, and JWT role-based access control.",
+    tags: ["Next.js 14", "TypeScript", "React", "Tailwind CSS", "Gemini AI API", "Recharts", "jsPDF", "MySQL"],
     highlights: [
-      "Dynamic property filtering matrix by price, location, and amenity configurations",
-      "Integrated customer inquiry & lead generation CRM workflow",
-      "Optimized fast image & video virtual tour rendering pipeline"
+      "Role-based executive dashboards (Sales, Procurement, Accounts, Site Manager, Admin) with JWT authentication",
+      "Automated PDF booking agreement & payment receipt generator powered by jsPDF",
+      "Google Gemini AI integration for real estate financial forecasting & construction cost analytics"
     ],
     gradient: "from-amber-500/20 to-orange-500/20",
     border: "border-amber-500/30"
